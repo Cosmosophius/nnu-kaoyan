@@ -318,9 +318,6 @@
   .dock-btn .svg-icon{width:15px;height:15px;}
   .dock-btn.active{color:var(--cinnabar-deep);background:var(--cinnabar-wash);}
 
-  @media (prefers-color-scheme: dark){
-    .mode-dock{background:rgba(31,29,22,.94);}
-  }
 
   /* ============ 概念抽屉 ============ */
   .sheet-scrim{
@@ -376,23 +373,144 @@
   }
   .sec-head-name{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:.03em;}
   .sec-head-score{font-size:10.5px;color:var(--ink-3);margin-top:1px;}
+
+  /* ================================================================
+     重排版 v23：导航移至最左侧竖栏，彻底取消顶部/底部横栏
+     阅读区 = 100% 视口高度，仅让出 64px 竖栏
+     ================================================================ */
+  :root{ --rail-w:64px; }
+
+  body{ display:block !important; }
+
+  /* ---------- 左侧竖栏 ---------- */
+  .rail{
+    position:fixed; left:0; top:0; bottom:0; width:var(--rail-w);
+    background:var(--paper-card);
+    border-right:1px solid var(--rule);
+    display:flex; flex-direction:column; align-items:center;
+    padding:8px 0 12px; gap:3px;
+    z-index:200; overflow-y:auto; scrollbar-width:none;
+  }
+  .rail::-webkit-scrollbar{ display:none; }
+
+  /* 返回：朱砂描边，一眼可见 */
+  .rail-back{
+    flex:0 0 auto; width:50px; height:44px;
+    border:1px solid rgba(192,48,36,.36); background:var(--cinnabar-wash);
+    color:var(--cinnabar-deep); border-radius:6px; cursor:pointer;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
+    font-family:var(--serif); font-size:10px; font-weight:700; letter-spacing:.04em;
+    margin-bottom:3px;
+  }
+  .rail-back .svg-icon{ width:17px; height:17px; }
+  .rail-back:active{ background:var(--cinnabar); color:#FFF8F2; }
+
+  .rail-title{
+    flex:0 0 auto; width:100%; text-align:center;
+    font-size:10.5px; font-weight:700; letter-spacing:.05em;
+    color:var(--ink); line-height:1.35; padding:1px 2px 0;
+  }
+  .rail-stat{
+    flex:0 0 auto; width:100%; text-align:center;
+    font-size:9px; color:var(--ink-4); letter-spacing:.01em;
+    padding:0 2px 1px; line-height:1.3;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+
+  .rail-sep{ flex:0 0 auto; width:26px; height:1px; background:var(--rule); margin:5px 0; }
+
+  /* 模式按钮：竖排图标 + 小字 */
+  .rail-btn{
+    flex:0 0 auto; width:52px; height:46px;
+    border:none; background:transparent; cursor:pointer; border-radius:6px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+    color:var(--ink-3); font-family:var(--serif);
+    font-size:10px; font-weight:600; letter-spacing:.02em;
+    transition:background .15s,color .15s;
+  }
+  .rail-btn .svg-icon{ width:19px; height:19px; }
+  .rail-btn.active{ color:var(--cinnabar-deep); background:var(--cinnabar-wash); }
+  .rail-btn:active{ background:var(--paper-sunk); }
+
+  /* 学科按钮 */
+  .rail-sub{
+    flex:0 0 auto; width:48px; height:28px;
+    border:none; background:transparent; cursor:pointer; border-radius:5px;
+    color:var(--ink-3); font-family:var(--serif);
+    font-size:11px; font-weight:600; letter-spacing:.02em;
+    transition:background .15s,color .15s;
+  }
+  .rail-sub.active{ background:var(--cinnabar); color:#FFF8F2; }
+  .rail-sub:active{ background:var(--paper-sunk); }
+
+  /* ---------- 内容区：让出竖栏 ---------- */
+  .content{
+    margin-left:var(--rail-w); height:100vh;
+    display:flex; flex-direction:column; overflow:hidden;
+  }
+
+  /* 顶部横栏 / 底部横栏：彻底移除 */
+  .top-bar, .mode-dock{ display:none !important; }
+
+  /* 筛选条：吸附内容区顶部，仅 30px */
+  .filter-bar{
+    height:30px; flex:0 0 auto; position:relative; z-index:150;
+    display:flex; align-items:center; gap:6px;
+    padding:0 14px; overflow-x:auto; white-space:nowrap;
+    background:var(--paper-card); border-bottom:1px solid var(--rule-soft);
+    scrollbar-width:none;
+  }
+  .filter-bar::-webkit-scrollbar{ display:none; }
+  .filter-bar[hidden]{ display:none; }
+  .filter-bar .chip{ height:22px; padding:0 9px; font-size:11px; }
+  .filter-bar .chip .svg-icon{ width:11px; height:11px; }
+
+  .view-viewport{ flex:1 1 auto; position:relative; overflow:hidden; min-height:0; }
+
+  /* 阅读区留白：上下不再为横栏预留 */
+  .view-screen{ padding:16px 22px 22px; }
+
+  /* 宽屏：内容列加宽，进一步消除手机感 */
+  @media (min-width:1100px){ .col{ max-width:1020px; } }
+  @media (min-width:1400px){ .col{ max-width:1200px; } }
 </style>
 </head>
 <body>
 
-  <!-- 顶栏：单行 40px -->
-  <header class="top-bar">
-    <button class="tb-back" id="backBtn" style="display:none;" onclick="goBack()">
+  <!-- 左侧竖栏：返回 / 学科 / 模式，全部竖排 -->
+  <aside class="rail">
+    <button class="rail-back" id="backBtn" style="visibility:hidden;" onclick="goBack()">
       <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      <span>返回</span>
     </button>
-    <div class="tb-title" id="appHeaderTitle">汉硕知识图谱</div>
-    <nav class="subject-switch">
-      <button class="subject-btn active" id="subBtn-yinlun" onclick="switchSubject('yinlun')">引论</button>
-      <button class="subject-btn" id="subBtn-xdhy" onclick="switchSubject('xdhy')">现汉</button>
-      <button class="subject-btn" id="subBtn-culture" onclick="switchSubject('culture')">要略</button>
-    </nav>
-    <div class="tb-stat" id="globalStatBadge">2131</div>
-  </header>
+
+    <div class="rail-title" id="appHeaderTitle">知识图谱</div>
+    <div class="rail-stat" id="globalStatBadge">2131</div>
+
+    <div class="rail-sep"></div>
+
+    <button class="rail-sub active" id="subBtn-yinlun" onclick="switchSubject('yinlun')">引论</button>
+    <button class="rail-sub" id="subBtn-xdhy" onclick="switchSubject('xdhy')">现汉</button>
+    <button class="rail-sub" id="subBtn-culture" onclick="switchSubject('culture')">要略</button>
+
+    <div class="rail-sep"></div>
+
+    <button class="rail-btn active" id="navRecite" onclick="setMode('recite')">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm-1 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
+      <span>背诵</span>
+    </button>
+    <button class="rail-btn" id="navCloze" onclick="setMode('cloze')">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      <span>挖空</span>
+    </button>
+    <button class="rail-btn" id="navExam" onclick="setMode('exam')">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      <span>真题</span>
+    </button>
+  </aside>
+
+  <!-- 内容区 -->
+  <div class="content">
 
   <!-- 筛选栏：34px -->
   <div class="filter-bar" id="practiceFilterBar" hidden>
@@ -431,21 +549,7 @@
     </div>
   </div>
 
-  <!-- 底栏：细条 -->
-  <nav class="mode-dock" id="modeDock">
-    <button class="dock-btn active" id="navRecite" onclick="setMode('recite')">
-      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm-1 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
-      <span>背诵</span>
-    </button>
-    <button class="dock-btn" id="navCloze" onclick="setMode('cloze')">
-      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-      <span>挖空</span>
-    </button>
-    <button class="dock-btn" id="navExam" onclick="setMode('exam')">
-      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-      <span>真题</span>
-    </button>
-  </nav>
+  </div><!-- /.content -->
 
   <!-- 概念嵌套抽屉 -->
   <div class="sheet-scrim" id="sheetScrim" onclick="closeConceptSheet()"></div>
@@ -512,23 +616,9 @@
     }
   });
 
-  /* 底栏下滑隐藏 */
-  (function () {
-    const dock = document.getElementById('modeDock');
-    let lastY = 0;
-    document.querySelectorAll('.view-screen').forEach(sc => {
-      sc.addEventListener('scroll', () => {
-        const y = sc.scrollTop;
-        if (y > 60 && y > lastY + 6) dock.classList.add('tucked');
-        else if (y < lastY - 6 || y < 40) dock.classList.remove('tucked');
-        lastY = y;
-      }, { passive: true });
-    });
-  })();
-
   function switchSubject(subjectId) {
     currentSubjectId = subjectId;
-    document.querySelectorAll('.subject-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.rail-sub').forEach(btn => btn.classList.remove('active'));
     document.getElementById('subBtn-' + subjectId).classList.add('active');
 
     currentPaper = null;
@@ -659,7 +749,7 @@
   function selectChapter(chapterName) {
     selectedChapter = chapterName;
     currentPaper = null;
-    document.getElementById('backBtn').style.display = 'flex';
+    document.getElementById('backBtn').style.visibility = 'visible';
     document.getElementById('appHeaderTitle').innerText = chapterName.split(' ')[0] + ' · 演练';
     document.getElementById('practiceFilterBar').hidden = false;
 
@@ -674,7 +764,7 @@
   function navToChapters() {
     selectedChapter = null;
     currentPaper = null;
-    document.getElementById('backBtn').style.display = 'none';
+    document.getElementById('backBtn').style.visibility = 'hidden';
     const subInfo = globalData.subjects.find(s => s.id === currentSubjectId);
     document.getElementById('appHeaderTitle').innerText = subInfo ? subInfo.name : '汉硕知识图谱';
     document.getElementById('practiceFilterBar').hidden = true;
@@ -699,7 +789,7 @@
 
   function setMode(mode) {
     currentMode = mode;
-    document.querySelectorAll('.dock-btn').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.rail-btn').forEach(el => el.classList.remove('active'));
     if (mode === 'recite') document.getElementById('navRecite').classList.add('active');
     if (mode === 'cloze')  document.getElementById('navCloze').classList.add('active');
     if (mode === 'exam')   document.getElementById('navExam').classList.add('active');
@@ -718,7 +808,7 @@
   function navToExamPapers() {
     selectedChapter = null;
     currentPaper = null;
-    document.getElementById('backBtn').style.display = 'none';
+    document.getElementById('backBtn').style.visibility = 'hidden';
     document.getElementById('practiceFilterBar').hidden = true;
     document.getElementById('appHeaderTitle').innerText = '南师大真题原卷';
     document.getElementById('globalStatBadge').innerText =
@@ -771,7 +861,7 @@
     currentPaper = paper;
     currentMode = 'exam';
 
-    document.getElementById('backBtn').style.display = 'flex';
+    document.getElementById('backBtn').style.visibility = 'visible';
     document.getElementById('appHeaderTitle').innerText = paper.year + ' · ' + paper.code;
     document.getElementById('practiceFilterBar').hidden = true;
     document.getElementById('globalStatBadge').innerText =
@@ -847,6 +937,19 @@
     if (currentPaper) navToExamPapers();
     else navToChapters();
   }
+
+  /* 系统返回键 / 侧滑手势：与竖栏返回按钮逐级一致 */
+  function historyBack() {
+    const sheet = document.getElementById('bottomSheet');
+    if (sheet && sheet.classList.contains('open')) { closeConceptSheet(); return true; }
+    if (currentPaper) { navToExamPapers(); return true; }
+    if (selectedChapter) { navToChapters(); return true; }
+    return false;
+  }
+  window.addEventListener('popstate', function () {
+    if (historyBack()) { try { history.pushState({ guard: 1 }, ''); } catch (e) {} }
+  });
+  try { history.pushState({ guard: 1 }, ''); } catch (e) {}
 
   function toggleCardAnswer(cardId) {
     const wrapper = document.getElementById('ans-' + cardId);
