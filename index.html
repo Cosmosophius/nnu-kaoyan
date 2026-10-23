@@ -951,7 +951,7 @@
                            : (layers[0].provenance === 'deepseek') ? '查看 deepseek 生成答案'
                            : '查看 gemini 生成答案';
           ansHtml = `
-            <button class="reveal-btn" id="btn-reveal-${cid}" onclick="toggleCardAnswer('${cid}')">
+            <button class="reveal-btn" id="btn-reveal-${cid}" data-origin-label="${firstLabel}" onclick="toggleCardAnswer('${cid}')">
               <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
               <span>${firstLabel}</span>
             </button>
@@ -993,12 +993,21 @@
   });
   try { history.pushState({ guard: 1 }, ''); } catch (e) {}
 
-  function toggleCardAnswer(cardId) {
+  const ICON_EYE = '<svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+  const ICON_UP = '<svg class="svg-icon" viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>';
+
+  function toggleCardAnswer(cardId, forceShow) {
     const wrapper = document.getElementById('ans-' + cardId);
     const btn = document.getElementById('btn-reveal-' + cardId);
-    if (wrapper) {
-      const isShow = wrapper.classList.toggle('show');
-      if (btn) btn.style.display = isShow ? 'none' : 'flex';
+    if (!wrapper) return;
+    const isShow = (typeof forceShow === 'boolean')
+      ? (forceShow ? (wrapper.classList.add('show'), true) : (wrapper.classList.remove('show'), false))
+      : wrapper.classList.toggle('show');
+    if (btn) {
+      const origLabel = btn.getAttribute('data-origin-label') || '查看参考答案';
+      btn.innerHTML = isShow
+        ? `${ICON_UP}<span>收起答案</span>`
+        : `${ICON_EYE}<span>${origLabel}</span>`;
     }
   }
 
@@ -1008,7 +1017,7 @@
     card.querySelectorAll('.option-item').forEach(opt => {
       if (opt.getAttribute('data-letter') === correctLetter) opt.classList.add('correct');
     });
-    toggleCardAnswer(cardId);
+    toggleCardAnswer(cardId, true);
   }
 
   function renderPracticeCards() {
@@ -1078,6 +1087,8 @@
         : '';
 
       const defaultShow = (currentMode === 'cloze');
+      const btnIcon = defaultShow ? ICON_UP : ICON_EYE;
+      const btnText = defaultShow ? '收起答案' : '查看参考答案';
 
       return `
         <div class="card" id="card-${q.id}">
@@ -1087,11 +1098,10 @@
           </div>
           ${q.section ? `<div class="card-sub">${q.section}</div>` : ''}
           ${optionsHtml}
-          ${!defaultShow ? `
-            <button class="reveal-btn" id="btn-reveal-${q.id}" onclick="toggleCardAnswer('${q.id}')">
-              <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              <span>查看参考答案</span>
-            </button>` : ''}
+          <button class="reveal-btn" id="btn-reveal-${q.id}" data-origin-label="查看参考答案" onclick="toggleCardAnswer('${q.id}')">
+            ${btnIcon}
+            <span>${btnText}</span>
+          </button>
           <div class="answer-wrapper ${defaultShow ? 'show' : ''}" id="ans-${q.id}">
             <div class="answer-body">
               <div class="answer-label">参考答案</div>
