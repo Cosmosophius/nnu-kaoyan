@@ -221,6 +221,24 @@
   .pill-score{background:var(--paper-sunk);color:var(--ink-2);border-color:var(--rule);}
   .pill-type{background:transparent;color:var(--ink-3);border-color:var(--rule);}
   .pill-ai{background:transparent;color:var(--gold);border:1px dashed rgba(168,137,79,.7);}
+  /* ===== 三层答案样式：参考答案 → deepseek 生成 → gemini 生成 ===== */
+  .pill-official{background:var(--cinnabar);color:#fff;border:1px solid var(--cinnabar);}
+  .pill-ds{background:rgba(192,48,36,.08);color:var(--cinnabar-deep);border:1px dashed rgba(192,48,36,.55);}
+  .ans-layer{padding:10px 12px;border-radius:10px;margin-bottom:10px;border-left:3px solid transparent;}
+  .ans-layer:last-child{margin-bottom:0;}
+  .ans-layer-official{background:rgba(192,48,36,.05);border-left-color:var(--cinnabar);}
+  .ans-layer-deepseek{background:rgba(168,137,79,.07);border-left-color:var(--gold);}
+  .ans-layer-gemini{background:rgba(0,0,0,.025);border-left-color:rgba(0,0,0,.18);}
+  .ans-layer-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
+  .ans-layer-note{font-size:11px;color:var(--ink-soft);opacity:.75;}
+  .ans-layer-text{line-height:1.85;white-space:pre-wrap;}
+  .ans-layer-gemini .ans-layer-text{font-size:13px;color:var(--ink-soft);opacity:.8;}
+  .ans-analysis{margin-top:8px;padding:8px 10px;background:rgba(0,0,0,.03);border-radius:8px;font-size:13px;line-height:1.75;color:var(--ink-soft);}
+  .ans-analysis-t{display:inline-block;font-weight:700;color:var(--cinnabar-deep);margin-right:6px;letter-spacing:.06em;}
+  body.dark .ans-layer-official{background:rgba(192,48,36,.12);}
+  body.dark .ans-layer-deepseek{background:rgba(168,137,79,.14);}
+  body.dark .ans-layer-gemini{background:rgba(255,255,255,.04);border-left-color:rgba(255,255,255,.2);}
+  body.dark .ans-analysis{background:rgba(255,255,255,.05);}
   .sec-tag{
     font-size:10.5px;color:var(--ink-3);background:var(--paper-sunk);
     padding:2px 6px;border-radius:var(--r-s);
@@ -894,33 +912,54 @@
       const qs = sec.questions.map(q => {
         seq += 1;
         const cid = 'p-' + paper.id + '-' + seq;
-        const ref = q.ref || null;
         const missing = q.missing;
+        // 三层答案：official(参考答案) → deepseek 生成 → gemini 生成
+        const layers = (q.answers && q.answers.length) ? q.answers.slice() : (q.ref ? [q.ref] : []);
+        layers.sort((a,b) => (a.layer ?? 9) - (b.layer ?? 9));
+
+        const layerBlock = (ly) => {
+          const prov = ly.provenance || '';
+          let label, cls, note;
+          if (prov === 'official') {
+            label = '参考答案'; cls = 'pill pill-official'; note = '';
+          } else if (prov === 'deepseek') {
+            label = 'deepseek 生成'; cls = 'pill pill-ds'; note = '（结合教材整理）';
+          } else {
+            label = 'gemini 生成'; cls = 'pill pill-ai'; note = '（旧版答案，保留备查）';
+          }
+          const pts = (ly.answer_points && ly.answer_points.length)
+            ? `<ul class="points-list">${ly.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>`
+            : '';
+          const ana = ly.analysis
+            ? `<div class="ans-analysis"><span class="ans-analysis-t">解析</span>${linkifyConcepts(ly.analysis)}</div>`
+            : '';
+          return `
+            <div class="ans-layer ans-layer-${prov}">
+              <div class="ans-layer-head">
+                <span class="${cls}">${label}</span>${note ? `<span class="ans-layer-note">${note}</span>` : ''}
+              </div>
+              <div class="ans-layer-text">${linkifyConcepts(ly.answer || '')}</div>
+              ${pts}${ana}
+            </div>`;
+        };
 
         let ansHtml = '';
-        if (missing) {
+        if (missing && !layers.length) {
           ansHtml = `<div class="card-sub">（原卷此处题干缺失）</div>`;
-        } else if (ref && (ref.answer || (ref.answer_points && ref.answer_points.length))) {
-          const pts = (ref.answer_points && ref.answer_points.length)
-            ? `<ul class="points-list">${ref.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>`
-            : '';
-          const provTag = (ref && ref.provenance === 'gemini')
-            ? `<span class="pill pill-ai" style="margin-left:8px;font-size:10px;">gemini 生成</span>`
-            : '';
+        } else if (layers.length) {
+          const firstLabel = (layers[0].provenance === 'official') ? '查看参考答案'
+                           : (layers[0].provenance === 'deepseek') ? '查看 deepseek 生成答案'
+                           : '查看 gemini 生成答案';
           ansHtml = `
             <button class="reveal-btn" id="btn-reveal-${cid}" onclick="toggleCardAnswer('${cid}')">
               <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-              <span>查看参考答案</span>
+              <span>${firstLabel}</span>
             </button>
             <div class="answer-wrapper" id="ans-${cid}">
-              <div class="answer-body">
-                <div class="answer-label" style="display:flex;align-items:center;">参考答案与解析 ${provTag}</div>
-                <div>${linkifyConcepts(ref.answer || '')}</div>
-                ${pts}
-              </div>
+              <div class="answer-body">${layers.map(layerBlock).join('')}</div>
             </div>`;
         } else {
-          ansHtml = `<div class="card-sub">（暂无匹配参考答案，可切到背诵模式按知识点查）</div>`;
+          ansHtml = `<div class="card-sub">（原卷此处题干缺失）</div>`;
         }
 
         return `
