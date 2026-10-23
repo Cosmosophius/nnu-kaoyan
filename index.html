@@ -656,9 +656,13 @@
     document.getElementById('globalStatBadge').innerText = subInfo.total;
 
     const dsByChapter = {};
+    const examByChapter = {};
     (globalData.questions[currentSubjectId] || []).forEach(q => {
       if (q.provenance === 'deepseek') {
         dsByChapter[q.chapter] = (dsByChapter[q.chapter] || 0) + 1;
+      }
+      if (q.exam_years && q.exam_years.length > 0) {
+        examByChapter[q.chapter] = (examByChapter[q.chapter] || 0) + 1;
       }
     });
 
@@ -667,6 +671,7 @@
       const sectionsHtml = Object.entries(ch.sections).map(([sName, count]) =>
         `<span class="sec-tag">${sName} ${count}</span>`).join('');
       const dsCount = dsByChapter[ch.chapter] || 0;
+      const examCount = (examByChapter[ch.chapter] !== undefined) ? examByChapter[ch.chapter] : (ch.exam_count || 0);
 
       return `
         <div class="chapter-card" onclick="selectChapter('${ch.chapter.replace(/'/g, "\\'")}')">
@@ -680,7 +685,7 @@
           </div>
           <div class="ch-meta-row">
             <span class="pill pill-score">${ch.total} 考点</span>
-            ${ch.exam_count ? `<span class="pill pill-exam">真题 ${ch.exam_count}</span>` : ''}
+            ${examCount ? `<span class="pill pill-exam">真题 ${examCount}</span>` : ''}
             ${dsCount ? `<span class="pill pill-ai">DS ${dsCount}</span>` : ''}
           </div>
           <div class="section-pills-flow">${sectionsHtml}</div>
