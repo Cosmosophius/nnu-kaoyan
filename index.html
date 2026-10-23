@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#6750A4">
+  <title>汉硕专业课 · 考研知识图谱 (引论/现汉/文化要略)</title>
+  <link rel="manifest" href="./manifest.json">
+  <style>
+    :root {
+      --md-sys-color-primary: #6750A4;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #EADDFF;
+      --md-sys-color-on-primary-container: #21005D;
+      --md-sys-color-surface: #FEF7FF;
+      --md-sys-color-on-surface: #1D1B20;
+      --md-sys-color-surface-variant: #E7E0EC;
+      --md-sys-color-on-surface-variant: #49454F;
+      --md-sys-color-outline: #79747E;
+      --md-sys-color-outline-variant: #CAC4D0;
+      --md-sys-color-background: #FEF7FF;
+      --md-sys-color-on-background: #1D1B20;
+      --md-sys-color-secondary-container: #E8DEF8;
+      --md-sys-color-on-secondary-container: #1D192B;
+      --md-sys-color-tertiary-container: #FFD8E4;
+      --md-sys-color-on-tertiary-container: #31111D;
+      --md-sys-color-error-container: #F9DEDC;
+      --md-sys-color-error: #B3261E;
+      --md-sys-color-success-container: #C4EED0;
+      --md-sys-color-success: #146C2E;
+      --md-radius-s: 8px;
+      --md-radius-m: 12px;
+      --md-radius-l: 16px;
+      --md-radius-xl: 28px;
+      --md-radius-full: 9999px;
+      --md-elevation-1: 0 1px 3px 1px rgba(0,0,0,0.12), 0 1px 2px 0 rgba(0,0,0,0.24);
+      --md-elevation-3: 0 4px 8px 3px rgba(0,0,0,0.15), 0 1px 3px 0 rgba(0,0,0,0.3);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --md-sys-color-primary: #D0BCFF;
+        --md-sys-color-on-primary: #381E72;
+        --md-sys-color-primary-container: #4F378B;
+        --md-sys-color-on-primary-container: #EADDFF;
+        --md-sys-color-surface: #141218;
+        --md-sys-color-on-surface: #E6E0E9;
+        --md-sys-color-surface-variant: #49454F;
+        --md-sys-color-on-surface-variant: #CAC4D0;
+        --md-sys-color-outline: #938F99;
+        --md-sys-color-outline-variant: #49454F;
+        --md-sys-color-background: #141218;
+        --md-sys-color-on-background: #E6E0E9;
+        --md-sys-color-secondary-container: #4A4458;
+        --md-sys-color-on-secondary-container: #E8DEF8;
+        --md-sys-color-tertiary-container: #633B48;
+        --md-sys-color-on-tertiary-container: #FFD8E4;
+      }
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body {
+      margin: 0; padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", sans-serif;
+      background: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      overflow-x: hidden; height: 100vh; display: flex; flex-direction: column;
+    }
+
+    .svg-icon { width: 22px; height: 22px; fill: currentColor; vertical-align: middle; }
+
+    header.top-app-bar {
+      height: 60px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between;
+      background: var(--md-sys-color-surface); border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      flex-shrink: 0; z-index: 100;
+    }
+    .app-title-group { display: flex; align-items: center; gap: 12px; }
+    .icon-btn {
+      width: 40px; height: 40px; border-radius: var(--md-radius-full);
+      border: none; background: transparent; color: var(--md-sys-color-on-surface);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+
+    .subject-tab-bar {
+      display: flex; background: var(--md-sys-color-surface);
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      padding: 6px 12px; gap: 8px; flex-shrink: 0;
+    }
+    .subject-btn {
+      flex: 1; height: 38px; border-radius: var(--md-radius-m);
+      border: 1px solid var(--md-sys-color-outline);
+      background: transparent; color: var(--md-sys-color-on-surface);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .subject-btn.active {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      border-color: transparent;
+      box-shadow: var(--md-elevation-1);
+    }
+
+    .view-viewport { flex: 1; position: relative; overflow: hidden; width: 100%; }
+    .view-screen {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px;
+      max-width: 960px; margin: 0 auto; width: 100%;
+      transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), opacity 0.2s ease;
+      will-change: transform, opacity;
+    }
+    .view-screen.hidden-left { transform: translate3d(-20%, 0, 0); opacity: 0; pointer-events: none; }
+    .view-screen.hidden-right { transform: translate3d(100%, 0, 0); opacity: 0; pointer-events: none; }
+
+    .chapter-card {
+      background: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--md-radius-l); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;
+      cursor: pointer; box-shadow: var(--md-elevation-1); transition: all 0.2s;
+    }
+    .chapter-card:active { transform: scale(0.985); background: var(--md-sys-color-surface-variant); }
+    .ch-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .ch-title { font-size: 17px; font-weight: 600; line-height: 1.4; color: var(--md-sys-color-on-surface); }
+    .ch-meta-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .pill {
+      font-size: 12px; padding: 3px 10px; border-radius: var(--md-radius-full); font-weight: 600;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .pill-exam { background: var(--md-sys-color-error-container); color: var(--md-sys-color-error); }
+    .pill-sec { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+    .pill-score { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+    .pill-type { background: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface-variant); }
+    .pill-ai {
+      background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);
+      border: 1px dashed var(--md-sys-color-tertiary);
+    }
+    .sec-tag { font-size: 12px; background: var(--md-sys-color-surface-variant); color: var(--md-sys-color-on-surface-variant); padding: 3px 8px; border-radius: 4px; }
+
+    .card {
+      background: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--md-radius-l); padding: 18px; display: flex; flex-direction: column; gap: 12px;
+      box-shadow: var(--md-elevation-1);
+    }
+    .stem-title { font-size: 17px; font-weight: 600; line-height: 1.5; color: var(--md-sys-color-on-surface); }
+
+    /* 选择题专有选项卡片列表 (MD3 Option Group) */
+    .options-group {
+      display: flex; flex-direction: column; gap: 8px; margin: 8px 0;
+    }
+    .option-item {
+      padding: 10px 14px; border-radius: var(--md-radius-m);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      background: var(--md-sys-color-surface);
+      font-size: 14.5px; line-height: 1.4; color: var(--md-sys-color-on-surface);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .option-item:active { background: var(--md-sys-color-secondary-container); }
+    .option-item.correct {
+      background: var(--md-sys-color-success-container);
+      color: var(--md-sys-color-success);
+      border-color: transparent;
+      font-weight: 600;
+    }
+
+    .answer-wrapper {
+      display: none; padding-top: 12px; border-top: 1px dashed var(--md-sys-color-outline-variant);
+      animation: fadeIn 0.2s ease;
+    }
+    .answer-wrapper.show { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .answer-body { font-size: 15px; line-height: 1.8; color: var(--md-sys-color-on-surface-variant); }
+    .points-list { margin: 10px 0 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+
+    /* 概念超链接高亮 */
+    .concept-link {
+      display: inline-block; color: var(--md-sys-color-primary); background: var(--md-sys-color-primary-container);
+      font-weight: 600; cursor: pointer; padding: 1px 6px; border-radius: 4px; margin: 0 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08); border-bottom: 2px solid var(--md-sys-color-primary);
+    }
+    .concept-link:active { transform: scale(0.95); background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+
+    .blank-mask {
+      display: inline-block; background: var(--md-sys-color-secondary-container);
+      color: transparent; padding: 2px 8px; border-radius: 4px; margin: 0 2px;
+      cursor: pointer; border-bottom: 2px solid var(--md-sys-color-primary); user-select: none;
+    }
+    .blank-mask.revealed { background: var(--md-sys-color-success-container); color: var(--md-sys-color-success); border-color: transparent; }
+
+    .reveal-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; height: 42px; border-radius: var(--md-radius-m);
+      background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);
+      border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .reveal-btn:active { transform: scale(0.98); }
+
+    .sheet-scrim {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.45); z-index: 500;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+    }
+    .sheet-scrim.open { opacity: 1; pointer-events: auto; }
+
+    .bottom-sheet {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: var(--md-sys-color-surface);
+      border-top-left-radius: var(--md-radius-xl); border-top-right-radius: var(--md-radius-xl);
+      box-shadow: var(--md-elevation-3); max-height: 82vh; display: flex; flex-direction: column;
+      transform: translate3d(0, 100%, 0); transition: transform 0.28s cubic-bezier(0.1, 0.9, 0.2, 1);
+      z-index: 501; max-width: 680px; margin: 0 auto;
+    }
+    .bottom-sheet.open { transform: translate3d(0, 0, 0); }
+
+    .sheet-drag-handle {
+      width: 32px; height: 4px; border-radius: var(--md-radius-full);
+      background: var(--md-sys-color-outline-variant); margin: 12px auto 6px auto; flex-shrink: 0;
+    }
+    .sheet-header {
+      padding: 8px 20px 12px 20px; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant); flex-shrink: 0;
+    }
+    .sheet-title { font-size: 19px; font-weight: 600; color: var(--md-sys-color-primary); }
+    .sheet-body { padding: 20px; overflow-y: auto; font-size: 15px; line-height: 1.8; color: var(--md-sys-color-on-surface-variant); }
+    .sheet-history-bar { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--md-sys-color-outline); padding: 4px 20px; flex-shrink: 0; }
+
+    nav.bottom-nav {
+      height: 68px; background: var(--md-sys-color-surface); border-top: 1px solid var(--md-sys-color-outline-variant);
+      display: flex; justify-content: space-around; align-items: center; flex-shrink: 0;
+    }
+    .nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: transparent; border: none; cursor: pointer; color: var(--md-sys-color-on-surface-variant); font-size: 12px; font-weight: 500;
+    }
+    .nav-indicator {
+      width: 56px; height: 32px; border-radius: var(--md-radius-full);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-item.active { color: var(--md-sys-color-on-surface); font-weight: 600; }
+    .nav-item.active .nav-indicator { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+
+    .filter-bar {
+      padding: 10px 16px; display: flex; gap: 8px; overflow-x: auto; white-space: nowrap; flex-shrink: 0;
+      border-bottom: 1px solid var(--md-sys-color-outline-variant); background: var(--md-sys-color-surface); scrollbar-width: none;
+    }
+    .filter-bar::-webkit-scrollbar { display: none; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px;
+      border-radius: var(--md-radius-s); border: 1px solid var(--md-sys-color-outline);
+      background: transparent; color: var(--md-sys-color-on-surface); font-size: 13px; font-weight: 500; cursor: pointer;
+    }
+    .chip.active { background: var(--md-sys-color-secondary-container); border-color: transparent; }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部应用栏 -->
+  <header class="top-app-bar">
+    <div class="app-title-group">
+      <button class="icon-btn" id="backBtn" style="display:none;" onclick="goBack()">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      </button>
+      <div id="appHeaderTitle" style="font-size:18px;font-weight:600;">汉硕知识图谱</div>
+    </div>
+    <div class="pill pill-score" id="globalStatBadge">共 2131 考点</div>
+  </header>
+
+  <!-- 顶部三大学科切换标签 -->
+  <div class="subject-tab-bar">
+    <button class="subject-btn active" id="subBtn-yinlun" onclick="switchSubject('yinlun')">
+      <span>引论 (730)</span>
+    </button>
+    <button class="subject-btn" id="subBtn-xdhy" onclick="switchSubject('xdhy')">
+      <span>现汉 (902)</span>
+    </button>
+    <button class="subject-btn" id="subBtn-culture" onclick="switchSubject('culture')">
+      <span>文化要略 (精选)</span>
+    </button>
+  </div>
+
+  <!-- 排序与过滤栏 -->
+  <div class="filter-bar" id="practiceFilterBar" style="display:none;">
+    <button class="chip active" id="sortFreqBtn" onclick="toggleSort('freq')">
+      <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>按真题考频置顶</span>
+    </button>
+    <button class="chip" id="sortSeqBtn" onclick="toggleSort('seq')">
+      <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+      <span>按教材顺序</span>
+    </button>
+    <button class="chip" id="filterExamOnlyBtn" onclick="toggleExamOnly()">
+      <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+      <span>仅看真题原题</span>
+    </button>
+  </div>
+
+  <!-- 视口 -->
+  <div class="view-viewport">
+    <div class="view-screen" id="chapterScreen">
+      <div style="font-size:13px;color:var(--md-sys-color-outline);padding:4px 0;" id="chapterSubtitle">点击任意章节进入沉浸式练习：</div>
+      <div id="chaptersList" style="display:flex;flex-direction:column;gap:12px;"></div>
+    </div>
+
+    <div class="view-screen hidden-right" id="examScreen">
+      <div style="font-size:13px;color:var(--md-sys-color-outline);padding:4px 0;" id="examSubtitle">南师大历年真题原卷（按试卷罗列）：</div>
+      <div id="examPapersList" style="display:flex;flex-direction:column;gap:12px;"></div>
+    </div>
+
+    <div class="view-screen hidden-right" id="practiceScreen">
+      <div id="practiceContentList" style="display:flex;flex-direction:column;gap:14px;"></div>
+    </div>
+  </div>
+
+  <!-- 底部 MD3 导航栏 -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" id="navRecite" onclick="setMode('recite')">
+      <div class="nav-indicator">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm-1 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/></svg>
+      </div>
+      <span>背诵图谱</span>
+    </button>
+    <button class="nav-item" id="navCloze" onclick="setMode('cloze')">
+      <div class="nav-indicator">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      </div>
+      <span>挖空记忆</span>
+    </button>
+    <button class="nav-item" id="navExam" onclick="setMode('exam')">
+      <div class="nav-indicator">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      </div>
+      <span>南师大真题</span>
+    </button>
+  </nav>
+
+  <!-- 概念嵌套小窗 -->
+  <div class="sheet-scrim" id="sheetScrim" onclick="closeConceptSheet()"></div>
+  <div class="bottom-sheet" id="bottomSheet">
+    <div class="sheet-drag-handle"></div>
+    <div class="sheet-header">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="icon-btn" id="sheetBackBtn" style="display:none;width:32px;height:32px;" onclick="popConceptHistory()">
+          <svg class="svg-icon" style="width:18px;height:18px;" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+        <div class="sheet-title" id="sheetTermTitle">概念词解</div>
+      </div>
+      <button class="icon-btn" onclick="closeConceptSheet()">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+    </div>
+    <div class="sheet-history-bar" id="sheetBreadcrumb" style="display:none;"></div>
+    <div class="sheet-body" id="sheetTermBody">正在检索概念释义...</div>
+  </div>
+
+  <script>
+    let globalData = null;
+    let currentSubjectId = 'yinlun';
+    let termDict = {};
+    let questionMap = {};
+    let selectedChapter = null;
+    let currentMode = 'recite';
+    let sortType = 'freq';
+    let examOnly = false;
+    let conceptHistory = [];
+    let examPapers = [];
+    let currentPaper = null;
+
+    const TS = Date.now();
+    Promise.all([
+      fetch('./data/all_subjects_data.json?t=' + TS).then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      }),
+      fetch('./data/term_index.json?t=' + TS).then(r => r.json()).catch(() => ({ terms: {} })),
+      fetch('./data/exam_papers.json?t=' + TS).then(r => r.json()).catch(() => ({ papers: [] }))
+    ]).then(([multiData, termData, paperData]) => {
+      globalData = multiData;
+      termDict = termData.terms || {};
+      examPapers = (paperData && paperData.papers) || [];
+
+      Object.values(globalData.questions).forEach(qList => {
+        qList.forEach(q => {
+          questionMap[q.id] = q;
+          if (q.stem && !termDict[q.stem]) {
+            termDict[q.stem] = q.id;
+          }
+        });
+      });
+
+      renderCurrentSubjectChapters();
+    }).catch(err => {
+      console.error('Data load error:', err);
+      const chList = document.getElementById('chaptersList');
+      if (chList) {
+        chList.innerHTML = `
+          <div style="text-align:center;padding:40px;color:var(--md-sys-color-error);">
+            题库载入异常 (${err.message})<br><br>
+            <button class="chip active" onclick="location.reload(true)">点击强制重试</button>
+          </div>
+        `;
+      }
+    });
+
+    function switchSubject(subjectId) {
+      currentSubjectId = subjectId;
+      document.querySelectorAll('.subject-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('subBtn-' + subjectId).classList.add('active');
+
+      // 切换学科时退出试卷视图与试卷详情
+      currentPaper = null;
+      document.getElementById('examScreen').classList.add('hidden-right');
+
+      if (currentMode === 'exam') {
+        setMode('recite');
+      }
+
+      if (selectedChapter) navToChapters();
+      renderCurrentSubjectChapters();
+    }
+
+    function renderCurrentSubjectChapters() {
+      if (!globalData) return;
+      const subInfo = globalData.subjects.find(s => s.id === currentSubjectId);
+      if (!subInfo) return;
+
+      document.getElementById('appHeaderTitle').innerText = subInfo.name;
+      document.getElementById('globalStatBadge').innerText = `共 ${subInfo.chapters.length} 章 · ${subInfo.total} 考点`;
+
+      // 统计各章 DeepSeek 推测题数量，便于一眼看出 AI 补充的分布
+      const dsByChapter = {};
+      (globalData.questions[currentSubjectId] || []).forEach(q => {
+        if (q.provenance === 'deepseek') {
+          dsByChapter[q.chapter] = (dsByChapter[q.chapter] || 0) + 1;
+        }
+      });
+
+      const container = document.getElementById('chaptersList');
+      container.innerHTML = subInfo.chapters.map((ch) => {
+        const sectionsHtml = Object.entries(ch.sections).map(([sName, count]) => {
+          return `<span class="sec-tag">${sName} (${count}题)</span>`;
+        }).join('');
+        const dsCount = dsByChapter[ch.chapter] || 0;
+
+        return `
+          <div class="chapter-card" onclick="selectChapter('${ch.chapter}')">
+            <div class="ch-header">
+              <div class="ch-title">${ch.chapter}</div>
+              <svg class="svg-icon" style="color:var(--md-sys-color-outline);" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </div>
+            <div class="ch-meta-row">
+              <span class="pill pill-score">收录 ${ch.total} 考点</span>
+              ${ch.exam_count ? `<span class="pill pill-exam">南师大真题命中 ${ch.exam_count} 次</span>` : ''}
+              ${dsCount ? `<span class="pill pill-ai">DeepSeek 推测 ${dsCount} 题</span>` : ''}
+              <span class="pill pill-sec">包含 ${ch.section_count} 核心节</span>
+            </div>
+            <div class="section-pills-flow">${sectionsHtml}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 安全的概念词法高亮（只替换文本内容，杜绝破坏现有 HTML 标签属性）
+    function linkifyConcepts(text) {
+      if (!text) return '';
+      const terms = Object.keys(termDict)
+        .filter(t => t.length >= 2 && !['这是', '一般', '可以', '进行', '人们', '一种', '包括', '如果', '为了', '中国', '通过', '主要'].includes(t))
+        .sort((a, b) => b.length - a.length);
+
+      if (terms.length === 0) return text;
+
+      // 拆分已经生成的 HTML 标签与纯文本段落
+      const parts = text.split(/(<[^>]+>)/g);
+      const regex = new RegExp(`(${terms.slice(0, 450).map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+
+      return parts.map(part => {
+        if (part.startsWith('<') && part.endsWith('>')) return part;
+        return part.replace(regex, (m) => `<span class="concept-link" onclick="event.stopPropagation();openConcept('${m}')">${m}</span>`);
+      }).join('');
+    }
+
+    function openConcept(term) {
+      conceptHistory.push(term);
+      renderConceptView(term);
+      document.getElementById('sheetScrim').classList.add('open');
+      document.getElementById('bottomSheet').classList.add('open');
+    }
+
+    function renderConceptView(term) {
+      const titleEl = document.getElementById('sheetTermTitle');
+      const bodyEl = document.getElementById('sheetTermBody');
+      const backBtn = document.getElementById('sheetBackBtn');
+      const breadcrumb = document.getElementById('sheetBreadcrumb');
+
+      titleEl.innerText = term;
+      backBtn.style.display = conceptHistory.length > 1 ? 'inline-flex' : 'none';
+
+      if (conceptHistory.length > 1) {
+        breadcrumb.style.display = 'flex';
+        breadcrumb.innerText = '路径: ' + conceptHistory.join(' ➔ ');
+      } else {
+        breadcrumb.style.display = 'none';
+      }
+
+      const targetId = termDict[term];
+      const q = targetId ? questionMap[targetId] : Object.values(questionMap).find(item => item.stem === term);
+
+      if (q) {
+        bodyEl.innerHTML = `
+          <div style="margin-bottom:8px;">
+            <span class="pill pill-score">${q.chapter}</span>
+            <span class="pill pill-type">${q.type || '名词解释'}</span>
+            ${q.frequency === '高频' ? '<span class="pill pill-exam">高频必背</span>' : ''}
+          </div>
+          <div style="font-size:17px;font-weight:600;margin-bottom:8px;color:var(--md-sys-color-on-surface);">${q.stem}</div>
+          <div style="line-height:1.8;">${linkifyConcepts(q.answer)}</div>
+          ${q.answer_points && q.answer_points.length ? `<div style="margin-top:14px;font-weight:600;color:var(--md-sys-color-primary);">核心采分要点：</div><ul style="padding-left:20px;margin-top:6px;">${q.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>` : ''}
+        `;
+      } else {
+        bodyEl.innerHTML = `
+          <div style="color:var(--md-sys-color-outline);padding:10px 0;">
+            <b>${term}</b> 是汉硕专业课核心考查术语。
+            <br><br>建议在教材相关章节中深入理解其与前后概念的联系。
+          </div>
+        `;
+      }
+    }
+
+    function popConceptHistory() {
+      if (conceptHistory.length > 1) {
+        conceptHistory.pop();
+        const prevTerm = conceptHistory[conceptHistory.length - 1];
+        renderConceptView(prevTerm);
+      }
+    }
+
+    function closeConceptSheet() {
+      document.getElementById('sheetScrim').classList.remove('open');
+      document.getElementById('bottomSheet').classList.remove('open');
+      conceptHistory = [];
+    }
+
+    function selectChapter(chapterName) {
+      selectedChapter = chapterName;
+      currentPaper = null;
+      document.getElementById('backBtn').style.display = 'inline-flex';
+      document.getElementById('appHeaderTitle').innerText = chapterName.split(' ')[0] + ' · 演练';
+      document.getElementById('practiceFilterBar').style.display = 'flex';
+
+      document.getElementById('chapterScreen').classList.add('hidden-left');
+      document.getElementById('examScreen').classList.add('hidden-right');
+      document.getElementById('practiceScreen').classList.remove('hidden-right');
+
+      renderPracticeCards();
+    }
+
+    function navToChapters() {
+      selectedChapter = null;
+      currentPaper = null;
+      document.getElementById('backBtn').style.display = 'none';
+      const subInfo = globalData.subjects.find(s => s.id === currentSubjectId);
+      document.getElementById('appHeaderTitle').innerText = subInfo ? subInfo.name : '汉硕知识图谱';
+      document.getElementById('practiceFilterBar').style.display = 'none';
+
+      document.getElementById('chapterScreen').classList.remove('hidden-left');
+      document.getElementById('practiceScreen').classList.add('hidden-right');
+      document.getElementById('examScreen').classList.add('hidden-right');
+    }
+
+    function toggleSort(type) {
+      sortType = type;
+      document.getElementById('sortFreqBtn').classList.toggle('active', type === 'freq');
+      document.getElementById('sortSeqBtn').classList.toggle('active', type === 'seq');
+      renderPracticeCards();
+    }
+
+    function toggleExamOnly() {
+      examOnly = !examOnly;
+      document.getElementById('filterExamOnlyBtn').classList.toggle('active', examOnly);
+      renderPracticeCards();
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      if (mode === 'recite') document.getElementById('navRecite').classList.add('active');
+      if (mode === 'cloze') document.getElementById('navCloze').classList.add('active');
+      if (mode === 'exam') document.getElementById('navExam').classList.add('active');
+
+      // 真题模式：按「试卷」罗列，不再混在章节背诵流里
+      if (mode === 'exam') {
+        navToExamPapers();
+        return;
+      }
+
+      if (!selectedChapter && globalData) {
+        const subInfo = globalData.subjects.find(s => s.id === currentSubjectId);
+        if (subInfo && subInfo.chapters.length) selectChapter(subInfo.chapters[0].chapter);
+      } else {
+        renderPracticeCards();
+      }
+    }
+
+    // ---------- 按试卷罗列真题 ----------
+    function navToExamPapers() {
+      selectedChapter = null;
+      currentPaper = null;
+      document.getElementById('backBtn').style.display = 'none';
+      document.getElementById('practiceFilterBar').style.display = 'none';
+      document.getElementById('appHeaderTitle').innerText = '南师大真题原卷';
+      document.getElementById('globalStatBadge').innerText =
+        examPapers.length + ' 份试卷 · ' + examPapers.reduce((n, p) =>
+          n + p.sections.reduce((m, s) => m + s.questions.length, 0), 0) + ' 题';
+
+      renderExamPapers();
+
+      document.getElementById('chapterScreen').classList.add('hidden-left');
+      document.getElementById('practiceScreen').classList.add('hidden-right');
+      const es = document.getElementById('examScreen');
+      es.classList.remove('hidden-right');
+    }
+
+    function renderExamPapers() {
+      const box = document.getElementById('examPapersList');
+      if (!examPapers.length) {
+        box.innerHTML = '<div style="text-align:center;padding:40px;color:var(--md-sys-color-outline);">暂未解析到真题试卷数据。</div>';
+        return;
+      }
+
+      // 按年份分组
+      const byYear = {};
+      examPapers.forEach(p => { (byYear[p.year] = byYear[p.year] || []).push(p); });
+      const years = Object.keys(byYear).sort((a, b) => b - a);
+
+      box.innerHTML = years.map(y => {
+        const items = byYear[y].map(p => {
+          const total = p.sections.reduce((n, s) => n + s.questions.length, 0);
+          const is354 = p.code === '354';
+          return `
+            <div class="chapter-card" onclick="openPaper('${p.id}')">
+              <div class="ch-header">
+                <div>
+                  <div class="ch-title">${p.code} ${p.subject}</div>
+                  <div class="ch-sub">${p.sections.length} 个大题 · ${total} 道小题</div>
+                </div>
+                <span class="pill ${is354 ? 'pill-type' : 'pill-score'}">${p.code}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div style="margin-top:8px;">
+            <div style="font-size:13px;font-weight:600;color:var(--md-sys-color-primary);padding:6px 2px;">${y} 年</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">${items}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openPaper(paperId) {
+      const paper = examPapers.find(p => p.id === paperId);
+      if (!paper) return;
+      currentPaper = paper;
+      currentMode = 'exam';
+
+      document.getElementById('backBtn').style.display = 'inline-flex';
+      document.getElementById('appHeaderTitle').innerText = paper.year + ' · ' + paper.code;
+      document.getElementById('practiceFilterBar').style.display = 'none';
+      document.getElementById('globalStatBadge').innerText =
+        paper.sections.reduce((n, s) => n + s.questions.length, 0) + ' 题';
+
+      renderPaperView(paper);
+
+      document.getElementById('examScreen').classList.add('hidden-right');
+      document.getElementById('chapterScreen').classList.add('hidden-left');
+      document.getElementById('practiceScreen').classList.remove('hidden-right');
+    }
+
+    function renderPaperView(paper) {
+      const container = document.getElementById('practiceContentList');
+      let seq = 0;
+
+      container.innerHTML = `
+        <div class="card" style="background:var(--md-sys-color-primary-container);">
+          <div class="stem-title" style="color:var(--md-sys-color-on-primary-container);">${paper.title}</div>
+          <div style="font-size:12px;color:var(--md-sys-color-on-primary-container);opacity:.8;margin-top:6px;">
+            按原卷大题顺序罗列 · 共 ${paper.sections.length} 个大题
+          </div>
+        </div>
+      ` + paper.sections.map(sec => {
+        const head = `
+          <div style="margin-top:10px;padding:10px 12px;border-left:4px solid var(--md-sys-color-primary);
+                      background:var(--md-sys-color-surface-variant);border-radius:var(--md-radius-s);">
+            <div style="font-size:14px;font-weight:600;">${sec.name}</div>
+            ${sec.score ? `<div style="font-size:12px;color:var(--md-sys-color-outline);margin-top:2px;">${sec.score}</div>` : ''}
+          </div>
+        `;
+
+        const qs = sec.questions.map(q => {
+          seq += 1;
+          const cid = 'p-' + paper.id + '-' + seq;
+          const ref = q.ref || null;
+          const missing = q.missing;
+
+          let ansHtml = '';
+          if (missing) {
+            ansHtml = `<div style="font-size:13px;color:var(--md-sys-color-outline);">（原卷此处题干缺失）</div>`;
+          } else if (ref && (ref.answer || (ref.answer_points && ref.answer_points.length))) {
+            const pts = (ref.answer_points && ref.answer_points.length)
+              ? `<ul class="points-list">${ref.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>`
+              : '';
+            ansHtml = `
+              <button class="reveal-btn" id="btn-reveal-${cid}" onclick="toggleCardAnswer('${cid}')">
+                <svg class="svg-icon" style="width:18px;height:18px;" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5-1.73-4.39-6-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                <span>查看参考答案</span>
+              </button>
+              <div class="answer-wrapper" id="ans-${cid}">
+                <div class="answer-body">
+                  <div style="font-weight:600;color:var(--md-sys-color-primary);margin-bottom:4px;">参考答案：</div>
+                  <div>${linkifyConcepts(ref.answer || '')}</div>
+                  ${pts}
+                </div>
+              </div>
+            `;
+          } else {
+            ansHtml = `<div style="font-size:12px;color:var(--md-sys-color-outline);">（该题暂无匹配参考答案，可切到背诵模式按知识点查）</div>`;
+          }
+
+          return `
+            <div class="card" id="card-${cid}">
+              <div style="display:flex;gap:8px;align-items:flex-start;">
+                <div style="font-weight:600;color:var(--md-sys-color-primary);flex-shrink:0;">${q.no}.</div>
+                <div style="flex:1;">${q.text}</div>
+              </div>
+              ${ansHtml}
+            </div>
+          `;
+        }).join('');
+
+        return head + `<div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">${qs}</div>`;
+      }).join('');
+    }
+
+    function goBack() {
+      if (currentPaper) {
+        navToExamPapers();
+      } else {
+        navToChapters();
+      }
+    }
+
+    function toggleCardAnswer(cardId) {
+      const wrapper = document.getElementById('ans-' + cardId);
+      const btn = document.getElementById('btn-reveal-' + cardId);
+      if (wrapper) {
+        const isShow = wrapper.classList.toggle('show');
+        if (btn) btn.style.display = isShow ? 'none' : 'flex';
+      }
+    }
+
+    // 针对选择题：点击选项高亮答案
+    function checkChoice(cardId, selectedLetter, correctLetter) {
+      const card = document.getElementById('card-' + cardId);
+      if (!card) return;
+      card.querySelectorAll('.option-item').forEach(opt => {
+        if (opt.getAttribute('data-letter') === correctLetter) {
+          opt.classList.add('correct');
+        }
+      });
+      // 顺便揭晓解析
+      toggleCardAnswer(cardId);
+    }
+
+    function renderPracticeCards() {
+      if (!selectedChapter || !globalData) return;
+      const currentList = globalData.questions[currentSubjectId] || [];
+      let list = currentList.filter(q => q.chapter === selectedChapter);
+
+      if (currentMode === 'exam' || examOnly) {
+        list = list.filter(q => q.exam_years && q.exam_years.length > 0);
+      }
+
+      // 排序处理
+      if (currentSubjectId === 'culture') {
+        // 文化要略专属题型排序权重：大题在前，填空题 -> 选择题 -> 判断题 严格放最后！
+        const TYPE_ORDER = {
+          '名词解释': 1,
+          '简答题': 2,
+          '论述题': 3,
+          '填空题': 10,
+          '单项选择题': 20,
+          '选择题': 20,
+          '判断题': 30
+        };
+
+        // 同题型内：真题/教材题（0）排在 AI 推测题（1）之前
+        const srcRank = q => (q.provenance === 'deepseek' ? 1 : 0);
+
+        list.sort((a, b) => {
+          const orderA = TYPE_ORDER[a.type] || 5;
+          const orderB = TYPE_ORDER[b.type] || 5;
+          if (orderA !== orderB) {
+            return orderA - orderB;
+          }
+          if (srcRank(a) !== srcRank(b)) {
+            return srcRank(a) - srcRank(b);
+          }
+          if (sortType === 'freq') {
+            return (b.importance_score || 0) - (a.importance_score || 0);
+          }
+          return 0;
+        });
+      } else {
+        if (sortType === 'freq') {
+          list.sort((a, b) => (b.importance_score || 0) - (a.importance_score || 0));
+        }
+      }
+
+      const container = document.getElementById('practiceContentList');
+      if (!list || list.length === 0) {
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:var(--md-sys-color-outline);">该模式下暂无匹配考点，请切换筛选或模式。</div>';
+        return;
+      }
+
+      container.innerHTML = list.map((q, idx) => {
+        const isExam = q.exam_years && q.exam_years.length > 0;
+        const yearTag = isExam ? `<span class="pill pill-exam">南师大真题 ${q.exam_years.join('/')}年</span>` : '';
+        const freqTag = q.frequency === '高频' ? `<span class="pill pill-score">高频必背</span>` : '';
+        const typeTag = `<span class="pill pill-type">${q.type || '名词解释'}</span>`;
+        // AI 推测命题标注：真题未覆盖、由 DeepSeek 按南师大命题偏好推导
+        const aiTag = (q.provenance === 'deepseek')
+          ? `<span class="pill pill-ai">DeepSeek 推测</span>`
+          : '';
+
+        // 核心突破 1：针对单项选择题，精准渲染出 A/B/C/D 选项组！
+        let optionsHtml = '';
+        if (q.options && q.options.length > 0) {
+          const correctLetter = (q.answer || '').trim().charAt(0);
+          optionsHtml = `
+            <div class="options-group">
+              ${q.options.map(opt => {
+                const letter = opt.trim().charAt(0);
+                return `
+                  <div class="option-item" data-letter="${letter}" onclick="checkChoice('${q.id}', '${letter}', '${correctLetter}')">
+                    ${opt}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+        }
+
+        // 处理挖空与概念词法高亮
+        let answerText = q.answer || '';
+        let pointsArray = q.answer_points || [];
+
+        if (currentMode === 'cloze' && q.blank_keys && q.blank_keys.length > 0) {
+          q.blank_keys.forEach(k => {
+            if (k && k.length > 1) {
+              const r = new RegExp(k, 'g');
+              answerText = answerText.replace(r, `<span class="blank-mask" onclick="this.classList.toggle('revealed')">${k}</span>`);
+            }
+          });
+        } else {
+          answerText = linkifyConcepts(answerText);
+        }
+
+        const pointsHtml = pointsArray.length > 0
+          ? `<ul class="points-list">${pointsArray.map(p => `<li>${currentMode === 'recite' ? linkifyConcepts(p) : p}</li>`).join('')}</ul>`
+          : '';
+
+        const defaultShow = (currentMode === 'cloze');
+
+        return `
+          <div class="card" id="card-${q.id}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+              <div class="stem-title">${idx + 1}. ${q.stem}</div>
+              <div style="display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;">
+                ${typeTag}
+                ${yearTag}
+                ${freqTag}
+                ${aiTag}
+              </div>
+            </div>
+            <div style="font-size:12px;color:var(--md-sys-color-outline);">${q.section || ''}</div>
+
+            <!-- 选择题选项区域 -->
+            ${optionsHtml}
+
+            <!-- 折叠查看答案按钮 -->
+            ${!defaultShow ? `
+              <button class="reveal-btn" id="btn-reveal-${q.id}" onclick="toggleCardAnswer('${q.id}')">
+                <svg class="svg-icon" style="width:18px;height:18px;" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                <span>点击查看参考答案与解析</span>
+              </button>
+            ` : ''}
+
+            <!-- 答案解析折叠区 -->
+            <div class="answer-wrapper ${defaultShow ? 'show' : ''}" id="ans-${q.id}">
+              <div class="answer-body">
+                <div style="font-weight:600;color:var(--md-sys-color-primary);margin-bottom:4px;">参考答案：</div>
+                <div>${answerText}</div>
+                ${pointsHtml}
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed var(--md-sys-color-outline-variant);">
+              <span style="font-size:12px;color:var(--md-sys-color-outline);">考频加权: ${q.importance_score}</span>
+              <button class="chip" onclick="this.classList.toggle('active')">
+                <svg class="svg-icon" style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                <span>已掌握</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  </script>
+</body>
+</html>
