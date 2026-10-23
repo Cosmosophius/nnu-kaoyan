@@ -904,6 +904,9 @@
           const pts = (ref.answer_points && ref.answer_points.length)
             ? `<ul class="points-list">${ref.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>`
             : '';
+          const provTag = (ref && ref.provenance === 'gemini')
+            ? `<span class="pill pill-ai" style="margin-left:8px;font-size:10px;">gemini 生成</span>`
+            : '';
           ansHtml = `
             <button class="reveal-btn" id="btn-reveal-${cid}" onclick="toggleCardAnswer('${cid}')">
               <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
@@ -911,7 +914,7 @@
             </button>
             <div class="answer-wrapper" id="ans-${cid}">
               <div class="answer-body">
-                <div class="answer-label">参考答案</div>
+                <div class="answer-label" style="display:flex;align-items:center;">参考答案与解析 ${provTag}</div>
                 <div>${linkifyConcepts(ref.answer || '')}</div>
                 ${pts}
               </div>
