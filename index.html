@@ -15,12 +15,12 @@
     --ink:#141414;
     --ink-1:#3A352E;
     --ink-2:#5A544B;
-    --ink-3:#8C8578;
-    --ink-4:#B5AD9E;
+    --ink-3:#6E675C;
+    --ink-4:#726B5E;
     --cinnabar:#C03024;
     --cinnabar-deep:#9E2519;
     --cinnabar-wash:#F7E4E0;
-    --gold:#A8894F;
+    --gold:#7A6130;
     --gold-wash:#F3EAD8;
     --bamboo:#4A6B52;
     --bamboo-wash:#E6EDE6;
@@ -46,8 +46,8 @@
       --ink:#F0E9DA;
       --ink-1:#DCD4C3;
       --ink-2:#B8AF9C;
-      --ink-3:#8A8272;
-      --ink-4:#5E574A;
+      --ink-3:#9A927F;
+      --ink-4:#8A8272;
       --cinnabar:#D8503F;
       --cinnabar-deep:#E8776A;
       --cinnabar-wash:#3A211C;
@@ -116,7 +116,7 @@
   .subject-btn:active{background:rgba(245,239,227,.12);}
 
   .tb-stat{
-    flex:0 0 auto;font-size:10.5px;font-weight:600;letter-spacing:.03em;
+    flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.03em;
     color:rgba(240,201,195,.85);white-space:nowrap;
     padding-left:9px;margin-left:2px;
     border-left:1px solid rgba(245,239,227,.18);
@@ -137,11 +137,14 @@
     display:inline-flex;align-items:center;gap:5px;
     height:23px;padding:0 9px;border-radius:var(--r-s);
     border:1px solid var(--rule);background:transparent;color:var(--ink-3);
-    font-family:var(--serif);font-size:11.5px;font-weight:600;letter-spacing:.02em;
+    font-family:var(--serif);font-size:12.5px;font-weight:600;letter-spacing:.02em;
     cursor:pointer;transition:all .16s;flex:0 0 auto;
   }
   .chip .svg-icon{width:12px;height:12px;}
   .chip.active{background:var(--cinnabar-wash);color:var(--cinnabar-deep);border-color:rgba(192,48,36,.34);}
+  .chip-n{font-style:normal;font-size:10.5px;opacity:.6;margin-left:3px;}
+  .chip.active .chip-n{opacity:.85;}
+  .chip-sep{width:1px;height:14px;background:var(--rule);flex:0 0 auto;margin:0 2px;}
 
   /* ============ 内容视口 ============ */
   .view-viewport{flex:1 1 auto;position:relative;overflow:hidden;min-height:0;}
@@ -166,7 +169,7 @@
   }
 
   .hint-line{
-    font-size:11.5px;color:var(--ink-3);
+    font-size:12.5px;color:var(--ink-3);
     padding:0 1px 2px;letter-spacing:.06em;
     display:flex;align-items:center;gap:8px;
   }
@@ -192,7 +195,7 @@
     font-size:14.5px;font-weight:700;line-height:1.42;
     color:var(--ink);letter-spacing:.02em;
   }
-  .ch-sub{font-size:11px;color:var(--ink-3);margin-top:2px;letter-spacing:.02em;}
+  .ch-sub{font-size:12px;color:var(--ink-3);margin-top:2px;letter-spacing:.02em;}
   .ch-arrow{flex:0 0 auto;color:var(--ink-4);margin-top:2px;}
   .ch-arrow .svg-icon{width:15px;height:15px;}
   .ch-meta-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
@@ -211,7 +214,7 @@
 
   /* ============ 标签 ============ */
   .pill{
-    font-size:10.5px;padding:2px 7px;border-radius:var(--r-s);
+    font-size:12px;padding:2px 7px;border-radius:var(--r-s);
     font-weight:600;letter-spacing:.02em;
     display:inline-flex;align-items:center;gap:3px;
     border:1px solid transparent;white-space:nowrap;line-height:1.5;
@@ -230,17 +233,17 @@
   .ans-layer-deepseek{background:rgba(168,137,79,.07);border-left-color:var(--gold);}
   .ans-layer-gemini{background:rgba(0,0,0,.025);border-left-color:rgba(0,0,0,.18);}
   .ans-layer-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
-  .ans-layer-note{font-size:11px;color:var(--ink-soft);opacity:.75;}
+  .ans-layer-note{font-size:12px;color:var(--ink-soft);opacity:.75;}
   .ans-layer-text{line-height:1.85;white-space:pre-wrap;}
-  .ans-layer-gemini .ans-layer-text{font-size:13px;color:var(--ink-soft);opacity:.8;}
-  .ans-analysis{margin-top:8px;padding:8px 10px;background:rgba(0,0,0,.03);border-radius:8px;font-size:13px;line-height:1.75;color:var(--ink-soft);}
+  .ans-layer-gemini .ans-layer-text{font-size:13.5px;color:var(--ink-soft);opacity:.8;}
+  .ans-analysis{margin-top:8px;padding:8px 10px;background:rgba(0,0,0,.03);border-radius:8px;font-size:13.5px;line-height:1.75;color:var(--ink-soft);}
   .ans-analysis-t{display:inline-block;font-weight:700;color:var(--cinnabar-deep);margin-right:6px;letter-spacing:.06em;}
   body.dark .ans-layer-official{background:rgba(192,48,36,.12);}
   body.dark .ans-layer-deepseek{background:rgba(168,137,79,.14);}
   body.dark .ans-layer-gemini{background:rgba(255,255,255,.04);border-left-color:rgba(255,255,255,.2);}
   body.dark .ans-analysis{background:rgba(255,255,255,.05);}
   .sec-tag{
-    font-size:10.5px;color:var(--ink-3);background:var(--paper-sunk);
+    font-size:12px;color:var(--ink-3);background:var(--paper-sunk);
     padding:2px 6px;border-radius:var(--r-s);
     border:1px solid var(--rule-soft);letter-spacing:.02em;
   }
@@ -255,18 +258,18 @@
   }
   .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
   .stem-title{
-    font-size:15px;font-weight:700;line-height:1.68;
+    font-size:16.5px;font-weight:700;line-height:1.68;
     color:var(--ink);letter-spacing:.015em;flex:1;min-width:0;
   }
   .stem-no{font-weight:700;color:var(--cinnabar-deep);flex:0 0 auto;margin-right:5px;}
   .card-tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;flex:0 0 auto;max-width:46%;}
-  .card-sub{font-size:10.5px;color:var(--ink-3);letter-spacing:.03em;}
+  .card-sub{font-size:12px;color:var(--ink-3);letter-spacing:.03em;}
 
   .options-group{display:flex;flex-direction:column;gap:5px;margin:2px 0;}
   .option-item{
     padding:8px 11px;border-radius:var(--r-s);
     border:1px solid var(--rule);background:var(--paper-raise);
-    font-size:13.5px;line-height:1.55;color:var(--ink-1);
+    font-size:14.5px;line-height:1.55;color:var(--ink-1);
     cursor:pointer;transition:all .14s;letter-spacing:.015em;
   }
   .option-item:active{background:var(--paper-sunk);}
@@ -278,8 +281,8 @@
   .answer-wrapper{display:none;padding-top:10px;border-top:1px dashed var(--rule);animation:fadeIn .2s ease;}
   .answer-wrapper.show{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(-3px);}to{opacity:1;transform:translateY(0);}}
-  .answer-label{font-weight:700;color:var(--cinnabar-deep);margin-bottom:4px;letter-spacing:.05em;font-size:12.5px;}
-  .answer-body{font-size:14px;line-height:1.9;color:var(--ink-2);letter-spacing:.015em;}
+  .answer-label{font-weight:700;color:var(--cinnabar-deep);margin-bottom:4px;letter-spacing:.05em;font-size:13px;}
+  .answer-body{font-size:15.5px;line-height:1.9;color:var(--ink-2);letter-spacing:.015em;}
   .points-list{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:7px;}
   .points-list li{line-height:1.8;}
 
@@ -302,7 +305,7 @@
     width:100%;height:32px;border-radius:var(--r-s);
     background:var(--paper-sunk);color:var(--ink-2);
     border:1px solid var(--rule);font-family:var(--serif);
-    font-size:12px;font-weight:600;letter-spacing:.06em;
+    font-size:13px;font-weight:600;letter-spacing:.06em;
     cursor:pointer;transition:all .16s;
   }
   .reveal-btn .svg-icon{width:14px;height:14px;}
@@ -312,7 +315,7 @@
     display:flex;justify-content:space-between;align-items:center;
     padding-top:7px;border-top:1px dashed var(--rule-soft);
   }
-  .card-foot-meta{font-size:10.5px;color:var(--ink-4);letter-spacing:.02em;}
+  .card-foot-meta{font-size:12px;color:var(--ink-4);letter-spacing:.02em;}
 
   /* ============ 底栏：细条 + 下滑隐藏 ============ */
   .mode-dock{
@@ -330,7 +333,7 @@
     display:flex;align-items:center;gap:6px;
     height:30px;padding:0 14px;border-radius:var(--r-s);
     border:none;background:transparent;color:var(--ink-3);
-    font-family:var(--serif);font-size:12px;font-weight:600;letter-spacing:.05em;
+    font-family:var(--serif);font-size:13px;font-weight:600;letter-spacing:.05em;
     cursor:pointer;transition:color .16s,background .16s;
   }
   .dock-btn .svg-icon{width:15px;height:15px;}
@@ -363,11 +366,11 @@
   .sheet-title{font-size:16px;font-weight:700;color:var(--cinnabar-deep);letter-spacing:.04em;}
   .sheet-body{
     padding:14px 18px calc(18px + env(safe-area-inset-bottom));
-    overflow-y:auto;font-size:14px;line-height:1.9;color:var(--ink-2);
+    overflow-y:auto;font-size:15.5px;line-height:1.9;color:var(--ink-2);
     letter-spacing:.015em;
   }
   .sheet-history-bar{
-    display:flex;gap:5px;align-items:center;font-size:11px;color:var(--ink-3);
+    display:flex;gap:5px;align-items:center;font-size:12px;color:var(--ink-3);
     padding:4px 18px;flex-shrink:0;border-bottom:1px solid var(--rule-soft);
     letter-spacing:.02em;overflow-x:auto;white-space:nowrap;
   }
@@ -380,7 +383,7 @@
 
   .paper-divider{
     display:flex;align-items:center;gap:9px;color:var(--ink-3);
-    font-size:11px;letter-spacing:.12em;font-weight:600;margin:4px 0 1px;
+    font-size:12px;letter-spacing:.12em;font-weight:600;margin:4px 0 1px;
   }
   .paper-divider::before,.paper-divider::after{content:'';flex:1;height:1px;background:var(--rule-soft);}
 
@@ -389,8 +392,8 @@
     padding:7px 11px;border-left:2.5px solid var(--cinnabar);
     background:var(--paper-sunk);border-radius:var(--r-s);
   }
-  .sec-head-name{font-size:12.5px;font-weight:700;color:var(--ink);letter-spacing:.03em;}
-  .sec-head-score{font-size:10.5px;color:var(--ink-3);margin-top:1px;}
+  .sec-head-name{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.03em;}
+  .sec-head-score{font-size:12px;color:var(--ink-3);margin-top:1px;}
 
   /* ================================================================
      重排版 v23：导航移至最左侧竖栏，彻底取消顶部/底部横栏
@@ -417,7 +420,7 @@
     border:1px solid rgba(192,48,36,.36); background:var(--cinnabar-wash);
     color:var(--cinnabar-deep); border-radius:6px; cursor:pointer;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
-    font-family:var(--serif); font-size:10px; font-weight:700; letter-spacing:.04em;
+    font-family:var(--serif); font-size:11.5px; font-weight:700; letter-spacing:.04em;
     margin-bottom:3px;
   }
   .rail-back .svg-icon{ width:17px; height:17px; }
@@ -425,12 +428,12 @@
 
   .rail-title{
     flex:0 0 auto; width:100%; text-align:center;
-    font-size:10.5px; font-weight:700; letter-spacing:.05em;
+    font-size:12px; font-weight:700; letter-spacing:.05em;
     color:var(--ink); line-height:1.35; padding:1px 2px 0;
   }
   .rail-stat{
     flex:0 0 auto; width:100%; text-align:center;
-    font-size:9px; color:var(--ink-4); letter-spacing:.01em;
+    font-size:11px; color:var(--ink-4); letter-spacing:.01em;
     padding:0 2px 1px; line-height:1.3;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
@@ -443,7 +446,7 @@
     border:none; background:transparent; cursor:pointer; border-radius:6px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
     color:var(--ink-3); font-family:var(--serif);
-    font-size:10px; font-weight:600; letter-spacing:.02em;
+    font-size:11.5px; font-weight:600; letter-spacing:.02em;
     transition:background .15s,color .15s;
   }
   .rail-btn .svg-icon{ width:19px; height:19px; }
@@ -455,7 +458,7 @@
     flex:0 0 auto; width:48px; height:28px;
     border:none; background:transparent; cursor:pointer; border-radius:5px;
     color:var(--ink-3); font-family:var(--serif);
-    font-size:11px; font-weight:600; letter-spacing:.02em;
+    font-size:12px; font-weight:600; letter-spacing:.02em;
     transition:background .15s,color .15s;
   }
   .rail-sub.active{ background:var(--cinnabar); color:#FFF8F2; }
@@ -480,7 +483,8 @@
   }
   .filter-bar::-webkit-scrollbar{ display:none; }
   .filter-bar[hidden]{ display:none; }
-  .filter-bar .chip{ height:22px; padding:0 9px; font-size:11px; }
+  .filter-bar .chip{ height:24px; padding:0 10px; font-size:12px; }
+  .filter-bar .chip-n{ font-size:10px; }
   .filter-bar .chip .svg-icon{ width:11px; height:11px; }
 
   .view-viewport{ flex:1 1 auto; position:relative; overflow:hidden; min-height:0; }
@@ -544,6 +548,29 @@
       <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
       <span>仅看真题</span>
     </button>
+    <span class="chip-sep"></span>
+    <button class="chip active" id="typeAllBtn" onclick="setTypeFilter('all')">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+      <span>全部题型</span>
+    </button>
+    <button class="chip" id="typeNamedBtn" onclick="setTypeFilter('名词解释')">
+      <span>名词解释</span><em class="chip-n" id="n名词解释"></em>
+    </button>
+    <button class="chip" id="typeShortBtn" onclick="setTypeFilter('简答题')">
+      <span>简答题</span><em class="chip-n" id="n简答题"></em>
+    </button>
+    <button class="chip" id="typeEssayBtn" onclick="setTypeFilter('论述题')">
+      <span>论述题</span><em class="chip-n" id="n论述题"></em>
+    </button>
+    <button class="chip" id="typeBlankBtn" onclick="setTypeFilter('填空题')">
+      <span>填空题</span><em class="chip-n" id="n填空题"></em>
+    </button>
+    <button class="chip" id="typeChoiceBtn" onclick="setTypeFilter('单项选择题')">
+      <span>选择题</span><em class="chip-n" id="n单项选择题"></em>
+    </button>
+    <button class="chip" id="typeJudgeBtn" onclick="setTypeFilter('判断题')">
+      <span>判断题</span><em class="chip-n" id="n判断题"></em>
+    </button>
   </div>
 
   <!-- 内容视口 -->
@@ -597,6 +624,7 @@
   let currentMode = 'recite';
   let sortType = 'freq';
   let examOnly = false;
+  let typeFilter = 'all';   /* 题型筛选：all 或具体题型 */
   let conceptHistory = [];
   let examPapers = [];
   let currentPaper = null;
@@ -743,10 +771,10 @@
           <span class="pill pill-type">${q.type || '名词解释'}</span>
           ${q.frequency === '高频' ? '<span class="pill pill-exam">高频</span>' : ''}
         </div>
-        <div style="font-size:15px;font-weight:700;margin-bottom:6px;color:var(--ink);">${q.stem}</div>
+        <div style="font-size:16.5px;font-weight:700;margin-bottom:6px;color:var(--ink);">${q.stem}</div>
         <div>${linkifyConcepts(q.answer)}</div>
         ${q.answer_points && q.answer_points.length
-          ? `<div style="margin-top:11px;font-weight:700;color:var(--cinnabar-deep);font-size:12.5px;">核心采分点</div>
+          ? `<div style="margin-top:11px;font-weight:700;color:var(--cinnabar-deep);font-size:13px;">核心采分点</div>
              <ul class="points-list">${q.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>`
           : ''}`;
     } else {
@@ -808,6 +836,43 @@
     examOnly = !examOnly;
     document.getElementById('filterExamOnlyBtn').classList.toggle('active', examOnly);
     renderPracticeCards();
+  }
+
+  /* 题型筛选：背诵模式下按题型分类 */
+  const TYPE_BTN_MAP = {
+    'all': 'typeAllBtn', '名词解释': 'typeNamedBtn', '简答题': 'typeShortBtn',
+    '论述题': 'typeEssayBtn', '填空题': 'typeBlankBtn',
+    '单项选择题': 'typeChoiceBtn', '判断题': 'typeJudgeBtn'
+  };
+
+  function setTypeFilter(t) {
+    typeFilter = t;
+    Object.keys(TYPE_BTN_MAP).forEach(k => {
+      const el = document.getElementById(TYPE_BTN_MAP[k]);
+      if (el) el.classList.toggle('active', k === t);
+    });
+    renderPracticeCards();
+  }
+
+  /* 把「选择题」归一到「单项选择题」，兼容 xdhy 的辨析题/分析题 */
+  function normType(t) {
+    if (!t) return '';
+    if (t === '选择题') return '单项选择题';
+    if (t === '案例分析题') return '案例分析';
+    return t;
+  }
+
+  /* 刷新题型 chip 上的数量徽标 */
+  function updateTypeCounts(list) {
+    const cnt = {};
+    list.forEach(q => {
+      const t = normType(q.type);
+      cnt[t] = (cnt[t] || 0) + 1;
+    });
+    ['名词解释', '简答题', '论述题', '填空题', '单项选择题', '判断题'].forEach(t => {
+      const el = document.getElementById('n' + t);
+      if (el) el.textContent = cnt[t] ? cnt[t] : '';
+    });
   }
 
   function setMode(mode) {
@@ -904,7 +969,7 @@
 
     container.innerHTML = `
       <div class="card" style="background:var(--paper-sunk);border-color:var(--rule);">
-        <div class="stem-title" style="font-size:14px;">${paper.title}</div>
+        <div class="stem-title" style="font-size:15px;">${paper.title}</div>
         <div class="card-sub">按原卷大题顺序 · 共 ${paper.sections.length} 个大题</div>
       </div>
     ` + paper.sections.map(sec => {
@@ -1032,6 +1097,12 @@
 
     if (currentMode === 'exam' || examOnly) {
       list = list.filter(q => q.exam_years && q.exam_years.length > 0);
+    }
+
+    /* 题型筛选（在排序之前，保证计数与筛选一致） */
+    updateTypeCounts(list);
+    if (typeFilter !== 'all') {
+      list = list.filter(q => normType(q.type) === typeFilter);
     }
 
     if (currentSubjectId === 'culture') {
