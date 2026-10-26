@@ -15,6 +15,7 @@
     --ink:#141414;
     --ink-1:#3A352E;
     --ink-2:#5A544B;
+    --fs:1;
     --ink-3:#6E675C;
     --ink-4:#726B5E;
     --cinnabar:#C03024;
@@ -97,7 +98,7 @@
   .tb-back .svg-icon{width:18px;height:18px;}
 
   .tb-title{
-    font-size:13.5px;font-weight:700;letter-spacing:.07em;
+    font-size:calc(13.5px * var(--fs));font-weight:700;letter-spacing:.07em;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
     flex:0 1 auto;min-width:0;color:#F5EFE3;
   }
@@ -106,7 +107,7 @@
   .subject-switch{display:flex;align-items:center;gap:2px;margin-left:auto;flex:0 0 auto;}
   .subject-btn{
     border:none;background:transparent;cursor:pointer;
-    font-family:var(--serif);font-size:12px;font-weight:600;
+    font-family:var(--serif);font-size:calc(12px * var(--fs));font-weight:600;
     letter-spacing:.05em;color:rgba(245,239,227,.5);
     padding:4px 8px;border-radius:var(--r-s);
     transition:color .16s,background .16s;
@@ -116,7 +117,7 @@
   .subject-btn:active{background:rgba(245,239,227,.12);}
 
   .tb-stat{
-    flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.03em;
+    flex:0 0 auto;font-size:calc(12px * var(--fs));font-weight:600;letter-spacing:.03em;
     color:rgba(240,201,195,.85);white-space:nowrap;
     padding-left:9px;margin-left:2px;
     border-left:1px solid rgba(245,239,227,.18);
@@ -137,12 +138,12 @@
     display:inline-flex;align-items:center;gap:5px;
     height:23px;padding:0 9px;border-radius:var(--r-s);
     border:1px solid var(--rule);background:transparent;color:var(--ink-3);
-    font-family:var(--serif);font-size:12.5px;font-weight:600;letter-spacing:.02em;
+    font-family:var(--serif);font-size:calc(12.5px * var(--fs));font-weight:600;letter-spacing:.02em;
     cursor:pointer;transition:all .16s;flex:0 0 auto;
   }
   .chip .svg-icon{width:12px;height:12px;}
   .chip.active{background:var(--cinnabar-wash);color:var(--cinnabar-deep);border-color:rgba(192,48,36,.34);}
-  .chip-n{font-style:normal;font-size:10.5px;opacity:.6;margin-left:3px;}
+  .chip-n{font-style:normal;font-size:calc(10.5px * var(--fs));opacity:.6;margin-left:3px;}
   .chip.active .chip-n{opacity:.85;}
   .chip-sep{width:1px;height:14px;background:var(--rule);flex:0 0 auto;margin:0 2px;}
 
@@ -169,7 +170,7 @@
   }
 
   .hint-line{
-    font-size:12.5px;color:var(--ink-3);
+    font-size:calc(12.5px * var(--fs));color:var(--ink-3);
     padding:0 1px 2px;letter-spacing:.06em;
     display:flex;align-items:center;gap:8px;
   }
@@ -192,10 +193,10 @@
   .chapter-card:active{background:var(--paper-sunk);box-shadow:none;transform:scale(.995);}
   .ch-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
   .ch-title{
-    font-size:14.5px;font-weight:700;line-height:1.42;
+    font-size:calc(14.5px * var(--fs));font-weight:700;line-height:1.42;
     color:var(--ink);letter-spacing:.02em;
   }
-  .ch-sub{font-size:12px;color:var(--ink-3);margin-top:2px;letter-spacing:.02em;}
+  .ch-sub{font-size:calc(12px * var(--fs));color:var(--ink-3);margin-top:2px;letter-spacing:.02em;}
   .ch-arrow{flex:0 0 auto;color:var(--ink-4);margin-top:2px;}
   .ch-arrow .svg-icon{width:15px;height:15px;}
   .ch-meta-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
@@ -214,7 +215,7 @@
 
   /* ============ 标签 ============ */
   .pill{
-    font-size:12px;padding:2px 7px;border-radius:var(--r-s);
+    font-size:calc(12px * var(--fs));padding:2px 7px;border-radius:var(--r-s);
     font-weight:600;letter-spacing:.02em;
     display:inline-flex;align-items:center;gap:3px;
     border:1px solid transparent;white-space:nowrap;line-height:1.5;
@@ -233,17 +234,17 @@
   .ans-layer-deepseek{background:rgba(168,137,79,.07);border-left-color:var(--gold);}
   .ans-layer-gemini{background:rgba(0,0,0,.025);border-left-color:rgba(0,0,0,.18);}
   .ans-layer-head{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap;}
-  .ans-layer-note{font-size:12px;color:var(--ink-soft);opacity:.75;}
+  .ans-layer-note{font-size:calc(12px * var(--fs));color:var(--ink-soft);opacity:.75;}
   .ans-layer-text{line-height:1.85;white-space:pre-wrap;}
-  .ans-layer-gemini .ans-layer-text{font-size:13.5px;color:var(--ink-soft);opacity:.8;}
-  .ans-analysis{margin-top:8px;padding:8px 10px;background:rgba(0,0,0,.03);border-radius:8px;font-size:13.5px;line-height:1.75;color:var(--ink-soft);}
+  .ans-layer-gemini .ans-layer-text{font-size:calc(13.5px * var(--fs));color:var(--ink-soft);opacity:.8;}
+  .ans-analysis{margin-top:8px;padding:8px 10px;background:rgba(0,0,0,.03);border-radius:8px;font-size:calc(13.5px * var(--fs));line-height:1.75;color:var(--ink-soft);}
   .ans-analysis-t{display:inline-block;font-weight:700;color:var(--cinnabar-deep);margin-right:6px;letter-spacing:.06em;}
   body.dark .ans-layer-official{background:rgba(192,48,36,.12);}
   body.dark .ans-layer-deepseek{background:rgba(168,137,79,.14);}
   body.dark .ans-layer-gemini{background:rgba(255,255,255,.04);border-left-color:rgba(255,255,255,.2);}
   body.dark .ans-analysis{background:rgba(255,255,255,.05);}
   .sec-tag{
-    font-size:12px;color:var(--ink-3);background:var(--paper-sunk);
+    font-size:calc(12px * var(--fs));color:var(--ink-3);background:var(--paper-sunk);
     padding:2px 6px;border-radius:var(--r-s);
     border:1px solid var(--rule-soft);letter-spacing:.02em;
   }
@@ -258,18 +259,18 @@
   }
   .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
   .stem-title{
-    font-size:16.5px;font-weight:700;line-height:1.68;
+    font-size:calc(16.5px * var(--fs));font-weight:700;line-height:1.68;
     color:var(--ink);letter-spacing:.015em;flex:1;min-width:0;
   }
   .stem-no{font-weight:700;color:var(--cinnabar-deep);flex:0 0 auto;margin-right:5px;}
   .card-tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;flex:0 0 auto;max-width:46%;}
-  .card-sub{font-size:12px;color:var(--ink-3);letter-spacing:.03em;}
+  .card-sub{font-size:calc(12px * var(--fs));color:var(--ink-3);letter-spacing:.03em;}
 
   .options-group{display:flex;flex-direction:column;gap:5px;margin:2px 0;}
   .option-item{
     padding:8px 11px;border-radius:var(--r-s);
     border:1px solid var(--rule);background:var(--paper-raise);
-    font-size:14.5px;line-height:1.55;color:var(--ink-1);
+    font-size:calc(14.5px * var(--fs));line-height:1.55;color:var(--ink-1);
     cursor:pointer;transition:all .14s;letter-spacing:.015em;
   }
   .option-item:active{background:var(--paper-sunk);}
@@ -281,8 +282,8 @@
   .answer-wrapper{display:none;padding-top:10px;border-top:1px dashed var(--rule);animation:fadeIn .2s ease;}
   .answer-wrapper.show{display:block;}
   @keyframes fadeIn{from{opacity:0;transform:translateY(-3px);}to{opacity:1;transform:translateY(0);}}
-  .answer-label{font-weight:700;color:var(--cinnabar-deep);margin-bottom:4px;letter-spacing:.05em;font-size:13px;}
-  .answer-body{font-size:15.5px;line-height:1.9;color:var(--ink-2);letter-spacing:.015em;}
+  .answer-label{font-weight:700;color:var(--cinnabar-deep);margin-bottom:4px;letter-spacing:.05em;font-size:calc(13px * var(--fs));}
+  .answer-body{font-size:calc(15.5px * var(--fs));line-height:1.9;color:var(--ink-2);letter-spacing:.015em;}
   .points-list{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:7px;}
   .points-list li{line-height:1.8;}
 
@@ -305,7 +306,7 @@
     width:100%;height:32px;border-radius:var(--r-s);
     background:var(--paper-sunk);color:var(--ink-2);
     border:1px solid var(--rule);font-family:var(--serif);
-    font-size:13px;font-weight:600;letter-spacing:.06em;
+    font-size:calc(13px * var(--fs));font-weight:600;letter-spacing:.06em;
     cursor:pointer;transition:all .16s;
   }
   .reveal-btn .svg-icon{width:14px;height:14px;}
@@ -315,7 +316,7 @@
     display:flex;justify-content:space-between;align-items:center;
     padding-top:7px;border-top:1px dashed var(--rule-soft);
   }
-  .card-foot-meta{font-size:12px;color:var(--ink-4);letter-spacing:.02em;}
+  .card-foot-meta{font-size:calc(12px * var(--fs));color:var(--ink-4);letter-spacing:.02em;}
 
   /* ============ 底栏：细条 + 下滑隐藏 ============ */
   .mode-dock{
@@ -333,7 +334,7 @@
     display:flex;align-items:center;gap:6px;
     height:30px;padding:0 14px;border-radius:var(--r-s);
     border:none;background:transparent;color:var(--ink-3);
-    font-family:var(--serif);font-size:13px;font-weight:600;letter-spacing:.05em;
+    font-family:var(--serif);font-size:calc(13px * var(--fs));font-weight:600;letter-spacing:.05em;
     cursor:pointer;transition:color .16s,background .16s;
   }
   .dock-btn .svg-icon{width:15px;height:15px;}
@@ -363,14 +364,14 @@
     padding:4px 16px 9px;display:flex;align-items:center;justify-content:space-between;
     border-bottom:1px solid var(--rule);flex-shrink:0;
   }
-  .sheet-title{font-size:16px;font-weight:700;color:var(--cinnabar-deep);letter-spacing:.04em;}
+  .sheet-title{font-size:calc(16px * var(--fs));font-weight:700;color:var(--cinnabar-deep);letter-spacing:.04em;}
   .sheet-body{
     padding:14px 18px calc(18px + env(safe-area-inset-bottom));
-    overflow-y:auto;font-size:15.5px;line-height:1.9;color:var(--ink-2);
+    overflow-y:auto;font-size:calc(15.5px * var(--fs));line-height:1.9;color:var(--ink-2);
     letter-spacing:.015em;
   }
   .sheet-history-bar{
-    display:flex;gap:5px;align-items:center;font-size:12px;color:var(--ink-3);
+    display:flex;gap:5px;align-items:center;font-size:calc(12px * var(--fs));color:var(--ink-3);
     padding:4px 18px;flex-shrink:0;border-bottom:1px solid var(--rule-soft);
     letter-spacing:.02em;overflow-x:auto;white-space:nowrap;
   }
@@ -383,7 +384,7 @@
 
   .paper-divider{
     display:flex;align-items:center;gap:9px;color:var(--ink-3);
-    font-size:12px;letter-spacing:.12em;font-weight:600;margin:4px 0 1px;
+    font-size:calc(12px * var(--fs));letter-spacing:.12em;font-weight:600;margin:4px 0 1px;
   }
   .paper-divider::before,.paper-divider::after{content:'';flex:1;height:1px;background:var(--rule-soft);}
 
@@ -392,8 +393,8 @@
     padding:7px 11px;border-left:2.5px solid var(--cinnabar);
     background:var(--paper-sunk);border-radius:var(--r-s);
   }
-  .sec-head-name{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.03em;}
-  .sec-head-score{font-size:12px;color:var(--ink-3);margin-top:1px;}
+  .sec-head-name{font-size:calc(13px * var(--fs));font-weight:700;color:var(--ink);letter-spacing:.03em;}
+  .sec-head-score{font-size:calc(12px * var(--fs));color:var(--ink-3);margin-top:1px;}
 
   /* ================================================================
      重排版 v23：导航移至最左侧竖栏，彻底取消顶部/底部横栏
@@ -420,7 +421,7 @@
     border:1px solid rgba(192,48,36,.36); background:var(--cinnabar-wash);
     color:var(--cinnabar-deep); border-radius:6px; cursor:pointer;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
-    font-family:var(--serif); font-size:11.5px; font-weight:700; letter-spacing:.04em;
+    font-family:var(--serif); font-size:calc(11.5px * var(--fs)); font-weight:700; letter-spacing:.04em;
     margin-bottom:3px;
   }
   .rail-back .svg-icon{ width:17px; height:17px; }
@@ -428,12 +429,12 @@
 
   .rail-title{
     flex:0 0 auto; width:100%; text-align:center;
-    font-size:12px; font-weight:700; letter-spacing:.05em;
+    font-size:calc(12px * var(--fs)); font-weight:700; letter-spacing:.05em;
     color:var(--ink); line-height:1.35; padding:1px 2px 0;
   }
   .rail-stat{
     flex:0 0 auto; width:100%; text-align:center;
-    font-size:11px; color:var(--ink-4); letter-spacing:.01em;
+    font-size:calc(11px * var(--fs)); color:var(--ink-4); letter-spacing:.01em;
     padding:0 2px 1px; line-height:1.3;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
   }
@@ -446,7 +447,7 @@
     border:none; background:transparent; cursor:pointer; border-radius:6px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
     color:var(--ink-3); font-family:var(--serif);
-    font-size:11.5px; font-weight:600; letter-spacing:.02em;
+    font-size:calc(11.5px * var(--fs)); font-weight:600; letter-spacing:.02em;
     transition:background .15s,color .15s;
   }
   .rail-btn .svg-icon{ width:19px; height:19px; }
@@ -458,7 +459,7 @@
     flex:0 0 auto; width:48px; height:28px;
     border:none; background:transparent; cursor:pointer; border-radius:5px;
     color:var(--ink-3); font-family:var(--serif);
-    font-size:12px; font-weight:600; letter-spacing:.02em;
+    font-size:calc(12px * var(--fs)); font-weight:600; letter-spacing:.02em;
     transition:background .15s,color .15s;
   }
   .rail-sub.active{ background:var(--cinnabar); color:#FFF8F2; }
@@ -483,8 +484,8 @@
   }
   .filter-bar::-webkit-scrollbar{ display:none; }
   .filter-bar[hidden]{ display:none; }
-  .filter-bar .chip{ height:24px; padding:0 10px; font-size:12px; }
-  .filter-bar .chip-n{ font-size:10px; }
+  .filter-bar .chip{ height:24px; padding:0 10px; font-size:calc(12px * var(--fs)); }
+  .filter-bar .chip-n{ font-size:calc(10px * var(--fs)); }
   .filter-bar .chip .svg-icon{ width:11px; height:11px; }
 
   .view-viewport{ flex:1 1 auto; position:relative; overflow:hidden; min-height:0; }
@@ -495,6 +496,38 @@
   /* 宽屏：内容列加宽，进一步消除手机感 */
   @media (min-width:1100px){ .col{ max-width:1020px; } }
   @media (min-width:1400px){ .col{ max-width:1200px; } }
+
+  /* ===== 字号控制 ===== */
+  .rail-fs{ display:flex; flex-direction:column; gap:4px; margin-top:4px; }
+  .fs-btn{ width:42px; height:22px; border:1px solid var(--rule); border-radius:6px;
+    background:var(--paper-card); color:var(--ink-2); font-size:calc(11px * var(--fs)); cursor:pointer;
+    line-height:1; padding:0; }
+  .fs-btn:active{ background:var(--cinnabar-wash); color:var(--cinnabar-deep); }
+
+  /* ===== 单卡模式 ===== */
+  .flash-bar{ display:flex; align-items:center; justify-content:center; gap:14px; padding:6px 0 12px; }
+  .flash-count{ font-size:calc(13px * var(--fs)); color:var(--ink-2); font-variant-numeric:tabular-nums; min-width:64px; text-align:center; }
+
+  /* ===== 自测统计条 ===== */
+  .stat-bar{ padding:2px 2px 10px; font-size:calc(12.5px * var(--fs)); color:var(--ink-3); }
+  .stat-bar b{ color:var(--cinnabar-deep); font-weight:700; }
+
+  /* ===== 判断题 ===== */
+  .judge-group{ display:flex; gap:10px; margin:10px 0 4px; }
+  .judge-btn{ flex:1 1 0; height:36px; border:1px solid var(--rule); border-radius:8px;
+    background:var(--paper-card); color:var(--ink-2); font-size:calc(14px * var(--fs)); cursor:pointer; }
+  .judge-btn:active{ background:var(--paper-sunk); }
+  .judge-btn.right{ background:rgba(56,142,60,.12); border-color:rgba(56,142,60,.5); color:#2E6B32; font-weight:700; }
+  .judge-btn.wrong{ background:rgba(192,48,36,.10); border-color:rgba(192,48,36,.45); color:var(--cinnabar-deep); font-weight:700; }
+
+  /* ===== 选项答错标记 ===== */
+  .option-item.wrong{ background:rgba(192,48,36,.10); border-color:rgba(192,48,36,.45); color:var(--cinnabar-deep); }
+
+  /* ===== 继续上次 ===== */
+  .resume-chip{ display:inline-flex; align-items:center; gap:6px; margin:0 0 12px;
+    padding:7px 12px; border:1px dashed rgba(192,48,36,.45); border-radius:8px;
+    background:var(--cinnabar-wash); color:var(--cinnabar-deep); font-size:calc(12.5px * var(--fs)); cursor:pointer; }
+  .resume-chip:active{ background:rgba(192,48,36,.14); }
 </style>
 </head>
 <body>
@@ -529,6 +562,18 @@
       <svg class="svg-icon" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
       <span>真题</span>
     </button>
+
+    <div class="rail-sep"></div>
+
+    <button class="rail-btn" id="flashBtn" onclick="toggleFlash()">
+      <svg class="svg-icon" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/></svg>
+      <span>单卡</span>
+    </button>
+
+    <div class="rail-fs">
+      <button class="fs-btn" onclick="setFs(0.1)" title="放大字号">A+</button>
+      <button class="fs-btn" onclick="setFs(-0.1)" title="缩小字号">A-</button>
+    </div>
   </aside>
 
   <!-- 内容区 -->
@@ -578,6 +623,7 @@
     <div class="view-screen" id="chapterScreen">
       <div class="col">
         <div class="hint-line" id="chapterSubtitle">点击章节进入练习</div>
+        <div id="resumeWrap"></div>
         <div id="chaptersList"></div>
       </div>
     </div>
@@ -628,6 +674,15 @@
   let conceptHistory = [];
   let examPapers = [];
   let currentPaper = null;
+  let flashMode = false;
+  let flashIdx = 0;
+  let flashTotal = 0;
+  let stats = {};
+  let savedChapter = null;
+  let fsScale = 1;
+  const LS_KEY = 'kaoyan_progress_v1';
+  const LS_STATS = 'kaoyan_stats_v1';
+  const LS_FS = 'kaoyan_fs_v1';
 
   const TS = Date.now();
   Promise.all([
@@ -649,7 +704,15 @@
       });
     });
 
+    loadStats();
+    try {
+      const savedFs = parseFloat(localStorage.getItem(LS_FS) || '1');
+      if (savedFs && savedFs >= 0.8 && savedFs <= 1.5) fsScale = savedFs;
+    } catch (e) {}
+    applyFs();
+
     renderCurrentSubjectChapters();
+    renderResumeChip();
   }).catch(err => {
     console.error('Data load error:', err);
     const chList = document.getElementById('chaptersList');
@@ -668,6 +731,7 @@
     document.getElementById('subBtn-' + subjectId).classList.add('active');
 
     currentPaper = null;
+    flashIdx = 0;
     document.getElementById('examScreen').classList.add('hidden-right');
 
     if (currentMode === 'exam') setMode('recite');
@@ -682,6 +746,7 @@
 
     document.getElementById('appHeaderTitle').innerText = subInfo.name;
     document.getElementById('globalStatBadge').innerText = subInfo.total;
+    if (typeof renderResumeChip === 'function') renderResumeChip();
 
     const dsByChapter = {};
     const examByChapter = {};
@@ -771,10 +836,10 @@
           <span class="pill pill-type">${q.type || '名词解释'}</span>
           ${q.frequency === '高频' ? '<span class="pill pill-exam">高频</span>' : ''}
         </div>
-        <div style="font-size:16.5px;font-weight:700;margin-bottom:6px;color:var(--ink);">${q.stem}</div>
+        <div style="font-size:calc(16.5px * var(--fs));font-weight:700;margin-bottom:6px;color:var(--ink);">${q.stem}</div>
         <div>${linkifyConcepts(q.answer)}</div>
         ${q.answer_points && q.answer_points.length
-          ? `<div style="margin-top:11px;font-weight:700;color:var(--cinnabar-deep);font-size:13px;">核心采分点</div>
+          ? `<div style="margin-top:11px;font-weight:700;color:var(--cinnabar-deep);font-size:calc(13px * var(--fs));">核心采分点</div>
              <ul class="points-list">${q.answer_points.map(p => `<li>${linkifyConcepts(p)}</li>`).join('')}</ul>`
           : ''}`;
     } else {
@@ -798,7 +863,9 @@
   }
 
   function selectChapter(chapterName) {
+    const changed = selectedChapter !== chapterName;
     selectedChapter = chapterName;
+    if (changed) flashIdx = 0;
     currentPaper = null;
     document.getElementById('backBtn').style.visibility = 'visible';
     document.getElementById('appHeaderTitle').innerText = chapterName.split(' ')[0] + ' · 演练';
@@ -890,6 +957,7 @@
     } else {
       renderPracticeCards();
     }
+    if (selectedChapter) saveProgress(flashIdx);
   }
 
   /* ---------- 真题：按试卷罗列 ---------- */
@@ -969,7 +1037,7 @@
 
     container.innerHTML = `
       <div class="card" style="background:var(--paper-sunk);border-color:var(--rule);">
-        <div class="stem-title" style="font-size:15px;">${paper.title}</div>
+        <div class="stem-title" style="font-size:calc(15px * var(--fs));">${paper.title}</div>
         <div class="card-sub">按原卷大题顺序 · 共 ${paper.sections.length} 个大题</div>
       </div>
     ` + paper.sections.map(sec => {
@@ -1085,9 +1153,226 @@
     const card = document.getElementById('card-' + cardId);
     if (!card) return;
     card.querySelectorAll('.option-item').forEach(opt => {
+      opt.classList.remove('wrong');
       if (opt.getAttribute('data-letter') === correctLetter) opt.classList.add('correct');
     });
+    if (selectedLetter !== correctLetter) {
+      const picked = card.querySelector('.option-item[data-letter="' + selectedLetter + '"]');
+      if (picked) picked.classList.add('wrong');
+    }
+    recordStat(cardId, selectedLetter === correctLetter ? 'right' : 'wrong');
     toggleCardAnswer(cardId, true);
+  }
+
+  function checkJudge(qid, guess) {
+    const q = questionMap[qid];
+    if (!q) return;
+    const correct = (q.answer || '').trim().startsWith('正确');
+    const card = document.getElementById('card-' + qid);
+    if (!card) return;
+    card.querySelectorAll('.judge-btn').forEach(b => {
+      b.classList.remove('right', 'wrong');
+      if (b.getAttribute('data-val') === String(correct)) b.classList.add('right');
+    });
+    if (guess !== correct) {
+      const picked = card.querySelector('.judge-btn[data-val="' + guess + '"]');
+      if (picked) picked.classList.add('wrong');
+    }
+    recordStat(qid, guess === correct ? 'right' : 'wrong');
+    toggleCardAnswer(qid, true);
+  }
+
+  /* ===== 进度记忆 ===== */
+  function saveProgress(idx) {
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify({
+        subject: currentSubjectId, chapter: selectedChapter, mode: currentMode,
+        type: typeFilter, flash: flashMode, idx: idx || 0, ts: Date.now()
+      }));
+    } catch (e) {}
+  }
+
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY) || 'null'); } catch (e) { return null; }
+  }
+
+  function loadStats() {
+    try { stats = JSON.parse(localStorage.getItem(LS_STATS) || '{}') || {}; } catch (e) { stats = {}; }
+  }
+
+  function saveStats() {
+    try { localStorage.setItem(LS_STATS, JSON.stringify(stats)); } catch (e) {}
+  }
+
+  function recordStat(qid, result) {
+    if (!stats[qid]) stats[qid] = { r: 0, w: 0, m: false };
+    if (result === 'right') stats[qid].r++; else stats[qid].w++;
+    saveStats();
+    const bar = document.getElementById('statBar');
+    if (bar && currentRenderList.length) {
+      bar.outerHTML = statBarHtml(currentRenderList);
+    }
+  }
+
+  function toggleMastered(qid) {
+    if (!stats[qid]) stats[qid] = { r: 0, w: 0, m: false };
+    stats[qid].m = !stats[qid].m;
+    saveStats();
+    renderPracticeCards();
+  }
+
+  let currentRenderList = [];
+
+  function statBarHtml(list) {
+    let right = 0, wrong = 0, mastered = 0;
+    list.forEach(q => {
+      const st = stats[q.id];
+      if (!st) return;
+      right += st.r || 0; wrong += st.w || 0;
+      if (st.m) mastered++;
+    });
+    const total = right + wrong;
+    const rate = total ? Math.round(right / total * 100) : 0;
+    let inner;
+    if (!total && !mastered) {
+      inner = '本章共 ' + list.length + ' 题 · 未开始自测';
+    } else {
+      inner = '本章 ' + list.length + ' 题 · 已答 <b>' + total + '</b> 次 · 正确率 <b>'
+        + rate + '%</b> · 已掌握 <b>' + mastered + '</b> 题';
+    }
+    return '<div class="stat-bar" id="statBar">' + inner + '</div>';
+  }
+
+  /* ===== 单卡模式 ===== */
+  function toggleFlash() {
+    flashMode = !flashMode;
+    flashIdx = 0;
+    const btn = document.getElementById('flashBtn');
+    if (btn) btn.classList.toggle('active', flashMode);
+    renderPracticeCards();
+  }
+
+  function flashNext() {
+    flashIdx = Math.min(flashTotal - 1, flashIdx + 1);
+    renderPracticeCards();
+  }
+
+  function flashPrev() {
+    flashIdx = Math.max(0, flashIdx - 1);
+    renderPracticeCards();
+  }
+
+  /* ===== 字号缩放 ===== */
+  function applyFs() {
+    document.documentElement.style.setProperty('--fs', fsScale);
+  }
+
+  function setFs(delta) {
+    fsScale = Math.min(1.5, Math.max(0.8, Math.round((fsScale + delta) * 10) / 10));
+    applyFs();
+    try { localStorage.setItem(LS_FS, String(fsScale)); } catch (e) {}
+  }
+
+  /* ===== 继续上次 ===== */
+  function renderResumeChip() {
+    const wrap = document.getElementById('resumeWrap');
+    if (!wrap) return;
+    const p = loadProgress();
+    if (!p || !p.chapter || p.subject !== currentSubjectId) { wrap.innerHTML = ''; return; }
+    const subInfo = globalData.subjects.find(x => x.id === p.subject);
+    const subName = subInfo ? subInfo.name.split(' ')[0] : '';
+    wrap.innerHTML = '<div class="resume-chip" onclick="resumeLast()">'
+      + '<svg class="svg-icon" viewBox="0 0 24 24" style="width:14px;height:14px;"><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>'
+      + '<span>继续上次：' + subName + ' · ' + p.chapter.split(' ')[0] + '</span></div>';
+  }
+
+  function resumeLast() {
+    const p = loadProgress();
+    if (!p || !p.chapter) return;
+    if (p.type && p.type !== 'all') setTypeFilter(p.type);
+    if (p.flash) { flashMode = true; const b = document.getElementById('flashBtn'); if (b) b.classList.add('active'); }
+    selectChapter(p.chapter);
+    flashIdx = p.idx || 0;
+    renderPracticeCards();
+  }
+
+  function renderCardHtml(q, idx) {
+    const isExam = q.exam_years && q.exam_years.length > 0;
+    const yearTag = isExam ? `<span class="pill pill-exam">真题 ${q.exam_years.join('/')}</span>` : '';
+    const freqTag = q.frequency === '高频' ? `<span class="pill pill-score">高频</span>` : '';
+    const typeTag = `<span class="pill pill-type">${q.type || '名词解释'}</span>`;
+    const aiTag = (q.provenance === 'deepseek') ? `<span class="pill pill-ai">DS 推测</span>` : '';
+    const isJudge = normType(q.type) === '判断题';
+
+    let optionsHtml = '';
+    if (q.options && q.options.length > 0) {
+      const correctLetter = (q.answer || '').trim().charAt(0);
+      optionsHtml = `<div class="options-group">${q.options.map(opt => {
+        const letter = opt.trim().charAt(0);
+        return `<div class="option-item" data-letter="${letter}" onclick="checkChoice('${q.id}','${letter}','${correctLetter}')">${opt}</div>`;
+      }).join('')}</div>`;
+    }
+
+    let judgeHtml = '';
+    if (isJudge) {
+      judgeHtml = `<div class="judge-group">`
+        + `<button class="judge-btn" data-val="true" onclick="checkJudge('${q.id}', true)">正确</button>`
+        + `<button class="judge-btn" data-val="false" onclick="checkJudge('${q.id}', false)">错误</button>`
+        + `</div>`;
+    }
+
+    let answerText = q.answer || '';
+    let pointsArray = q.answer_points || [];
+
+    if (currentMode === 'cloze' && q.blank_keys && q.blank_keys.length > 0) {
+      q.blank_keys.forEach(k => {
+        if (k && k.length > 1) {
+          const esc = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          answerText = answerText.replace(new RegExp(esc, 'g'),
+            `<span class="blank-mask" onclick="this.classList.toggle('revealed')">${k}</span>`);
+        }
+      });
+    } else {
+      answerText = linkifyConcepts(answerText);
+    }
+
+    const pointsHtml = pointsArray.length > 0
+      ? `<ul class="points-list">${pointsArray.map(p => `<li>${currentMode === 'recite' ? linkifyConcepts(p) : p}</li>`).join('')}</ul>`
+      : '';
+
+    const defaultShow = (currentMode === 'cloze');
+    const btnIcon = defaultShow ? ICON_UP : ICON_EYE;
+    const btnText = defaultShow ? '收起答案' : '查看参考答案';
+    const isM = stats[q.id] && stats[q.id].m;
+
+    return `
+      <div class="card" id="card-${q.id}">
+        <div class="card-head">
+          <div class="stem-title"><span class="stem-no">${idx + 1}.</span>${q.stem}</div>
+          <div class="card-tags">${typeTag}${yearTag}${freqTag}${aiTag}</div>
+        </div>
+        ${q.section ? `<div class="card-sub">${q.section}</div>` : ''}
+        ${optionsHtml}
+        ${judgeHtml}
+        <button class="reveal-btn" id="btn-reveal-${q.id}" data-origin-label="查看参考答案" onclick="toggleCardAnswer('${q.id}')">
+          ${btnIcon}
+          <span>${btnText}</span>
+        </button>
+        <div class="answer-wrapper ${defaultShow ? 'show' : ''}" id="ans-${q.id}">
+          <div class="answer-body">
+            <div class="answer-label">参考答案</div>
+            <div>${answerText}</div>
+            ${pointsHtml}
+          </div>
+        </div>
+        <div class="card-foot">
+          <span class="card-foot-meta">考频加权 ${q.importance_score}</span>
+          <button class="chip ${isM ? 'active' : ''}" onclick="toggleMastered('${q.id}')">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+            <span>${isM ? '已掌握' : '标记掌握'}</span>
+          </button>
+        </div>
+      </div>`;
   }
 
   function renderPracticeCards() {
@@ -1099,7 +1384,6 @@
       list = list.filter(q => q.exam_years && q.exam_years.length > 0);
     }
 
-    /* 题型筛选（在排序之前，保证计数与筛选一致） */
     updateTypeCounts(list);
     if (typeFilter !== 'all') {
       list = list.filter(q => normType(q.type) === typeFilter);
@@ -1124,76 +1408,30 @@
 
     const container = document.getElementById('practiceContentList');
     if (!list || list.length === 0) {
+      currentRenderList = [];
       container.innerHTML = '<div style="text-align:center;padding:36px;color:var(--ink-3);">该模式下暂无匹配考点。</div>';
       return;
     }
+    currentRenderList = list;
 
-    container.innerHTML = list.map((q, idx) => {
-      const isExam = q.exam_years && q.exam_years.length > 0;
-      const yearTag = isExam ? `<span class="pill pill-exam">真题 ${q.exam_years.join('/')}</span>` : '';
-      const freqTag = q.frequency === '高频' ? `<span class="pill pill-score">高频</span>` : '';
-      const typeTag = `<span class="pill pill-type">${q.type || '名词解释'}</span>`;
-      const aiTag = (q.provenance === 'deepseek') ? `<span class="pill pill-ai">DS 推测</span>` : '';
-
-      let optionsHtml = '';
-      if (q.options && q.options.length > 0) {
-        const correctLetter = (q.answer || '').trim().charAt(0);
-        optionsHtml = `<div class="options-group">${q.options.map(opt => {
-          const letter = opt.trim().charAt(0);
-          return `<div class="option-item" data-letter="${letter}" onclick="checkChoice('${q.id}','${letter}','${correctLetter}')">${opt}</div>`;
-        }).join('')}</div>`;
-      }
-
-      let answerText = q.answer || '';
-      let pointsArray = q.answer_points || [];
-
-      if (currentMode === 'cloze' && q.blank_keys && q.blank_keys.length > 0) {
-        q.blank_keys.forEach(k => {
-          if (k && k.length > 1) {
-            const r = new RegExp(k, 'g');
-            answerText = answerText.replace(r, `<span class="blank-mask" onclick="this.classList.toggle('revealed')">${k}</span>`);
-          }
-        });
-      } else {
-        answerText = linkifyConcepts(answerText);
-      }
-
-      const pointsHtml = pointsArray.length > 0
-        ? `<ul class="points-list">${pointsArray.map(p => `<li>${currentMode === 'recite' ? linkifyConcepts(p) : p}</li>`).join('')}</ul>`
-        : '';
-
-      const defaultShow = (currentMode === 'cloze');
-      const btnIcon = defaultShow ? ICON_UP : ICON_EYE;
-      const btnText = defaultShow ? '收起答案' : '查看参考答案';
-
-      return `
-        <div class="card" id="card-${q.id}">
-          <div class="card-head">
-            <div class="stem-title"><span class="stem-no">${idx + 1}.</span>${q.stem}</div>
-            <div class="card-tags">${typeTag}${yearTag}${freqTag}${aiTag}</div>
-          </div>
-          ${q.section ? `<div class="card-sub">${q.section}</div>` : ''}
-          ${optionsHtml}
-          <button class="reveal-btn" id="btn-reveal-${q.id}" data-origin-label="查看参考答案" onclick="toggleCardAnswer('${q.id}')">
-            ${btnIcon}
-            <span>${btnText}</span>
-          </button>
-          <div class="answer-wrapper ${defaultShow ? 'show' : ''}" id="ans-${q.id}">
-            <div class="answer-body">
-              <div class="answer-label">参考答案</div>
-              <div>${answerText}</div>
-              ${pointsHtml}
-            </div>
-          </div>
-          <div class="card-foot">
-            <span class="card-foot-meta">考频加权 ${q.importance_score}</span>
-            <button class="chip" onclick="this.classList.toggle('active')">
-              <svg class="svg-icon" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
-              <span>已掌握</span>
-            </button>
-          </div>
-        </div>`;
-    }).join('');
+    if (flashMode) {
+      flashTotal = list.length;
+      if (flashIdx >= list.length) flashIdx = 0;
+      if (flashIdx < 0) flashIdx = list.length - 1;
+      const q = list[flashIdx];
+      container.innerHTML =
+        `<div class="flash-bar">`
+        + `<button class="chip" onclick="flashPrev()">上一题</button>`
+        + `<span class="flash-count">${flashIdx + 1} / ${list.length}</span>`
+        + `<button class="chip" onclick="flashNext()">下一题</button>`
+        + `</div>`
+        + statBarHtml(list)
+        + renderCardHtml(q, flashIdx);
+      saveProgress(flashIdx);
+    } else {
+      container.innerHTML = statBarHtml(list) + list.map((q, idx) => renderCardHtml(q, idx)).join('');
+      saveProgress(0);
+    }
   }
 </script>
 </body>
