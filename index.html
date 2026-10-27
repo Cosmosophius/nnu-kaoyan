@@ -1312,7 +1312,23 @@
     flashIdx = 0;
     const btn = document.getElementById('flashBtn');
     if (btn) btn.classList.toggle('active', flashMode);
+
+    /* 未进入章节时 renderPracticeCards 会直接 return，按钮看起来就是“点不动”。
+       这里自动进入当前学科第一章，让单卡模式立刻可用。 */
+    if (!selectedChapter) {
+      const subInfo = globalData && globalData.subjects.find(s => s.id === currentSubjectId);
+      if (subInfo && subInfo.chapters && subInfo.chapters.length) {
+        selectChapter(subInfo.chapters[0].chapter);
+        return;
+      }
+      /* 连数据都没有：回退状态，不静默失败 */
+      flashMode = false;
+      if (btn) btn.classList.remove('active');
+      return;
+    }
     renderPracticeCards();
+    const ps = document.getElementById('practiceScreen');
+    if (ps) ps.scrollTop = 0;
   }
 
   function flashNext() {
