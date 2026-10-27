@@ -1,4 +1,4 @@
-const CACHE_NAME = 'yinlun-kaoyan-v33';
+const CACHE_NAME = 'yinlun-kaoyan-v34';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
