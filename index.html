@@ -157,7 +157,7 @@
     transition:transform .26s cubic-bezier(.2,0,0,1),opacity .2s ease;
     will-change:transform,opacity;overscroll-behavior:contain;
   }
-  .view-screen.hidden-left{transform:translate3d(-16%,0,0);opacity:0;pointer-events:none;}
+  .view-screen.hidden-left{transform:translate3d(-30%,0,0);opacity:0;pointer-events:none;}
   .view-screen.hidden-right{transform:translate3d(100%,0,0);opacity:0;pointer-events:none;}
   .view-screen::-webkit-scrollbar{width:5px;}
   .view-screen::-webkit-scrollbar-thumb{background:var(--ink-4);border-radius:3px;opacity:.5;}
@@ -183,21 +183,41 @@
     padding:12px 15px 12px 17px;
     display:flex;flex-direction:column;gap:7px;
     cursor:pointer;box-shadow:var(--shadow-1);
-    transition:background .15s,box-shadow .15s,transform .15s;
+    transition:background .18s cubic-bezier(.2,0,0,1),box-shadow .18s cubic-bezier(.2,0,0,1),transform .18s cubic-bezier(.2,0,0,1),border-color .18s;
     overflow:hidden;
+    animation:cardIn .3s cubic-bezier(.2,0,0,1) both;
+    animation-delay:calc(var(--i,0) * 40ms);
   }
   .chapter-card::before{
     content:'';position:absolute;left:0;top:0;bottom:0;width:2.5px;
     background:var(--cinnabar);opacity:.8;
   }
-  .chapter-card:active{background:var(--paper-sunk);box-shadow:none;transform:scale(.995);}
+  @media (hover: hover) {
+    .chapter-card:hover{
+      transform:translate3d(0,-2px,0);
+      box-shadow:var(--shadow-2);
+      border-color:rgba(192,48,36,.24);
+    }
+    .chapter-card:hover .ch-arrow{
+      color:var(--cinnabar-deep);
+      transform:translate3d(3px,0,0);
+    }
+  }
+  .chapter-card:active{
+    background:var(--paper-sunk);
+    box-shadow:inset 0 1px 2px rgba(0,0,0,.04);
+    transform:scale(.982);
+  }
   .ch-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
   .ch-title{
     font-size:calc(14.5px * var(--fs));font-weight:700;line-height:1.42;
     color:var(--ink);letter-spacing:.02em;
   }
   .ch-sub{font-size:calc(12px * var(--fs));color:var(--ink-3);margin-top:2px;letter-spacing:.02em;}
-  .ch-arrow{flex:0 0 auto;color:var(--ink-4);margin-top:2px;}
+  .ch-arrow{
+    flex:0 0 auto;color:var(--ink-4);margin-top:2px;
+    transition:transform .18s cubic-bezier(.2,0,0,1),color .18s;
+  }
   .ch-arrow .svg-icon{width:15px;height:15px;}
   .ch-meta-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
 
@@ -255,12 +275,28 @@
   .section-pills-flow{display:flex;flex-wrap:wrap;gap:4px;}
 
   /* ============ 题目卡 ============ */
+  @keyframes cardIn{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  @keyframes flashSlideInRight {
+    from{opacity:0;transform:translate3d(36px,0,0);}
+    to{opacity:1;transform:translate3d(0,0,0);}
+  }
+  @keyframes flashSlideInLeft {
+    from{opacity:0;transform:translate3d(-36px,0,0);}
+    to{opacity:1;transform:translate3d(0,0,0);}
+  }
   .card{
     position:relative;background:var(--paper-card);
     border:1px solid var(--rule);border-radius:var(--r-m);
     padding:14px 16px;display:flex;flex-direction:column;gap:9px;
     box-shadow:var(--shadow-1);
+    animation:cardIn .32s cubic-bezier(.2,0,0,1) both;
+    animation-delay:calc(var(--i,0) * 45ms);
   }
+  .card.flash-in-right{animation:flashSlideInRight .26s cubic-bezier(.16,1,.3,1) both !important;}
+  .card.flash-in-left{animation:flashSlideInLeft .26s cubic-bezier(.16,1,.3,1) both !important;}
   .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
   .stem-title{
     font-size:calc(16.5px * var(--fs));font-weight:700;line-height:1.68;
@@ -304,6 +340,30 @@
     border-bottom:1.5px solid var(--gold);user-select:none;
   }
   .blank-mask.revealed{background:var(--bamboo-wash);color:var(--bamboo);border-bottom-color:transparent;font-weight:700;}
+
+  /* ============ 触觉微动效 & 水墨 Ripple 扩散 ============ */
+  @keyframes rippleAnim {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0.36; }
+    100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
+  }
+  .reveal-btn, .chip, .rail-btn, .sec-tag, .rail-back, .rail-sub, .icon-btn {
+    position: relative;
+    overflow: hidden;
+  }
+  .reveal-btn::after, .chip::after, .rail-btn::after, .sec-tag::after, .rail-back::after, .rail-sub::after, .icon-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--cinnabar) 18%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  .reveal-btn:active::after, .chip:active::after, .rail-btn:active::after, .sec-tag:active::after, .rail-back:active::after, .rail-sub:active::after, .icon-btn:active::after {
+    animation: rippleAnim .35s ease-out;
+  }
 
   .reveal-btn{
     display:flex;align-items:center;justify-content:center;gap:6px;
@@ -363,7 +423,7 @@
     z-index:501;max-width:720px;margin:0 auto;
   }
   .bottom-sheet.open{transform:translate3d(0,0,0);}
-  .sheet-drag-handle{width:30px;height:3px;border-radius:2px;background:var(--ink-4);margin:9px auto 4px;flex-shrink:0;}
+  .sheet-drag-handle{width:38px;height:4px;border-radius:2px;background:var(--ink-4);opacity:.6;margin:10px auto 6px;flex-shrink:0;cursor:grab;touch-action:none;}
   .sheet-header{
     padding:4px 16px 9px;display:flex;align-items:center;justify-content:space-between;
     border-bottom:1px solid var(--rule);flex-shrink:0;
@@ -775,7 +835,7 @@
     });
 
     const container = document.getElementById('chaptersList');
-    container.innerHTML = subInfo.chapters.map(ch => {
+    container.innerHTML = subInfo.chapters.map((ch, ci) => {
       const chKey = ch.chapter.replace(/'/g, "\\'");
       const sectionsHtml = Object.entries(ch.sections).map(([sName, count]) =>
         `<button class="sec-tag" onclick="event.stopPropagation();selectSection('${chKey}','${sName.replace(/'/g, "\\'")}')">${sName}<em class="sec-tag-n">${count}</em></button>`).join('');
@@ -783,7 +843,7 @@
       const examCount = (examByChapter[ch.chapter] !== undefined) ? examByChapter[ch.chapter] : (ch.exam_count || 0);
 
       return `
-        <div class="chapter-card" onclick="selectChapter('${ch.chapter.replace(/'/g, "\\'")}')">
+        <div class="chapter-card" style="--i:${ci}" onclick="selectChapter('${ch.chapter.replace(/'/g, "\\'")}')">
           <div class="ch-header">
             <div style="min-width:0;">
               <div class="ch-title">${ch.chapter}</div>
@@ -874,9 +934,74 @@
 
   function closeConceptSheet() {
     document.getElementById('sheetScrim').classList.remove('open');
-    document.getElementById('bottomSheet').classList.remove('open');
+    const sheet = document.getElementById('bottomSheet');
+    if (sheet) {
+      sheet.classList.remove('open');
+      sheet.style.transform = '';
+      sheet.style.transition = '';
+    }
     conceptHistory = [];
   }
+
+  /* ===== 概念抽屉下拉手势跟手与关闭 ===== */
+  (function initSheetPullToClose() {
+    const sheet = document.getElementById('bottomSheet');
+    if (!sheet) return;
+    let startY = 0, currentY = 0, isDragging = false, startTime = 0;
+    const bodyEl = document.getElementById('sheetBody');
+
+    sheet.addEventListener('touchstart', function(e) {
+      if (!sheet.classList.contains('open') || e.touches.length !== 1) return;
+      const target = e.target;
+      const isHandle = target.classList.contains('sheet-drag-handle');
+      const isHeader = target.closest('.sheet-header') || isHandle;
+      const atTop = bodyEl ? bodyEl.scrollTop <= 0 : true;
+
+      if (isHeader || atTop) {
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
+        isDragging = false;
+      }
+    }, { passive: true });
+
+    sheet.addEventListener('touchmove', function(e) {
+      if (!startY) return;
+      currentY = e.touches[0].clientY;
+      const deltaY = currentY - startY;
+      const atTop = bodyEl ? bodyEl.scrollTop <= 0 : true;
+
+      if (deltaY > 0 && atTop) {
+        isDragging = true;
+        sheet.style.transition = 'none';
+        sheet.style.transform = 'translate3d(0,' + deltaY + 'px,0)';
+      }
+    }, { passive: true });
+
+    sheet.addEventListener('touchend', function(e) {
+      if (!startY) return;
+      const deltaY = currentY - startY;
+      const duration = Date.now() - startTime;
+      startY = 0; currentY = 0;
+
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (deltaY > 70 || (deltaY > 30 && duration < 240)) {
+        sheet.style.transition = 'transform .22s cubic-bezier(.2,0,0,1)';
+        sheet.style.transform = 'translate3d(0,100%,0)';
+        setTimeout(function() {
+          closeConceptSheet();
+        }, 220);
+      } else {
+        sheet.style.transition = 'transform .22s cubic-bezier(.1,.9,.2,1)';
+        sheet.style.transform = 'translate3d(0,0,0)';
+        setTimeout(function() {
+          sheet.style.transform = '';
+          sheet.style.transition = '';
+        }, 220);
+      }
+    }, { passive: true });
+  })();
 
   function selectChapter(chapterName) {
     const changed = selectedChapter !== chapterName;
@@ -1051,13 +1176,14 @@
     const byYear = {};
     examPapers.forEach(p => { (byYear[p.year] = byYear[p.year] || []).push(p); });
     const years = Object.keys(byYear).sort((a, b) => b - a);
+    let _epi = 0;
 
     box.innerHTML = years.map(y => {
       const items = byYear[y].map(p => {
         const total = p.sections.reduce((n, s) => n + s.questions.length, 0);
         const is354 = p.code === '354';
         return `
-          <div class="chapter-card" onclick="openPaper('${p.id}')">
+          <div class="chapter-card" style="--i:${_epi++}" onclick="openPaper('${p.id}')">
             <div class="ch-header">
               <div style="min-width:0;">
                 <div class="ch-title">${p.code} ${p.subject}</div>
@@ -1331,14 +1457,23 @@
     if (ps) ps.scrollTop = 0;
   }
 
+  let flashSlideDir = '';
   function flashNext() {
-    flashIdx = Math.min(flashTotal - 1, flashIdx + 1);
+    if (flashIdx >= flashTotal - 1) return;
+    flashSlideDir = 'right';
+    flashIdx++;
     renderPracticeCards();
+    const ps = document.getElementById('practiceScreen');
+    if (ps) ps.scrollTop = 0;
   }
 
   function flashPrev() {
-    flashIdx = Math.max(0, flashIdx - 1);
+    if (flashIdx <= 0) return;
+    flashSlideDir = 'left';
+    flashIdx--;
     renderPracticeCards();
+    const ps = document.getElementById('practiceScreen');
+    if (ps) ps.scrollTop = 0;
   }
 
   /* ===== 字号缩放 ===== */
@@ -1427,7 +1562,7 @@
     const isM = stats[q.id] && stats[q.id].m;
 
     return `
-      <div class="card" id="card-${q.id}">
+      <div class="card" id="card-${q.id}" style="--i:${Math.min(idx,12)}">
         <div class="card-head">
           <div class="stem-title"><span class="stem-no">${idx + 1}.</span>${q.stem}</div>
           <div class="card-tags">${typeTag}${yearTag}${freqTag}${aiTag}</div>
@@ -1505,6 +1640,11 @@
       if (flashIdx >= list.length) flashIdx = 0;
       if (flashIdx < 0) flashIdx = list.length - 1;
       const q = list[flashIdx];
+      const cardHtml = renderCardHtml(q, flashIdx);
+      const animatedCardHtml = flashSlideDir
+        ? cardHtml.replace('class="card"', 'class="card flash-in-' + flashSlideDir + '"')
+        : cardHtml;
+      flashSlideDir = '';
       container.innerHTML =
         `<div class="flash-bar">`
         + `<button class="chip" onclick="flashPrev()">上一题</button>`
@@ -1512,13 +1652,55 @@
         + `<button class="chip" onclick="flashNext()">下一题</button>`
         + `</div>`
         + statBarHtml(list)
-        + renderCardHtml(q, flashIdx);
+        + animatedCardHtml;
       saveProgress(flashIdx);
     } else {
       container.innerHTML = statBarHtml(list) + list.map((q, idx) => renderCardHtml(q, idx)).join('');
       saveProgress(0);
     }
   }
+
+  /* ===== 单卡触控手势滑动 & 键盘方向键翻页 ===== */
+  (function initFlashGestures() {
+    let touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+    const ps = document.getElementById('practiceScreen');
+    if (ps) {
+      ps.addEventListener('touchstart', function(e) {
+        if (!flashMode || e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = Date.now();
+      }, { passive: true });
+
+      ps.addEventListener('touchend', function(e) {
+        if (!flashMode || !touchStartX) return;
+        const touch = e.changedTouches[0];
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+        const elapsed = Date.now() - touchStartTime;
+        touchStartX = 0;
+        if (elapsed > 500) return;
+        if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25) {
+          if (deltaX < 0) {
+            flashNext();
+          } else {
+            flashPrev();
+          }
+        }
+      }, { passive: true });
+    }
+
+    window.addEventListener('keydown', function(e) {
+      if (!flashMode) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
+        flashNext();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        flashPrev();
+      }
+    });
+  })();
 </script>
 </body>
 </html>
